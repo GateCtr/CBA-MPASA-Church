@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/cba-mpasa run build",
-  "outputDirectory": "artifacts/cba-mpasa/dist/public",
+  "outputDirectory": "artifacts/cba-mpasa/dist",
   "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
