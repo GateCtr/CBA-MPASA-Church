@@ -78,7 +78,7 @@ export function CbaMpasa() {
             </div>
             <div>
               <div className="font-['Playfair_Display'] font-bold text-xl text-amber-800 leading-none">CBA-MPASA</div>
-              <div className="text-xs text-gray-500 tracking-wide">Communauté Baptiste Africaine</div>
+              <div className="text-xs text-gray-500 tracking-wide">Citadelle de la Foi</div>
             </div>
           </div>
 
@@ -124,12 +124,12 @@ export function CbaMpasa() {
               ✝ Bienvenue chez vous
             </div>
             <h1 className="font-['Playfair_Display'] text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
-              Communauté<br />
-              <span className="text-amber-400">Baptiste</span><br />
-              Africaine
+              Centre d'Enseignement<br />
+              <span className="text-amber-400">Biblique</span><br />
+              Appliqué
             </h1>
             <p className="text-gray-200 text-lg leading-relaxed mb-8 max-w-md">
-              Une église enracinée dans la foi, unie dans l'amour, et engagée pour la transformation de Mpasa et au-delà.
+              Citadelle de la Foi — une église enracinée dans la Parole, unie dans l'amour, et engagée pour la transformation de Mpasa Mikonga.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#horaires" className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-200 shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5">
@@ -180,10 +180,10 @@ export function CbaMpasa() {
               <span className="text-amber-700">Roche Éternelle</span>
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-4">
-              Fondée au cœur de Mpasa, la Communauté Baptiste Africaine (CBA-MPASA) est une église vivante, enracinée dans la Parole de Dieu et animée par l'Esprit Saint.
+              Fondé à Mpasa Mikonga, le Centre d'Enseignement Biblique Appliqué (CBA-MPASA) — surnommé <strong className="text-amber-700">Citadelle de la Foi</strong> — est une église vivante, enracinée dans la Parole de Dieu et animée par l'Esprit Saint.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
-              Depuis sa fondation, notre vision est de faire de Mpasa et ses environs un territoire transformé par l'Évangile — une maison pour les brisés, un refuge pour les chercheurs de Dieu, et une école pour les disciples de Jésus-Christ.
+              Notre vision est d'appliquer concrètement l'enseignement biblique dans la vie quotidienne des habitants de Mpasa Mikonga et de toute la R.D. Congo — une maison pour les brisés, un refuge pour les chercheurs de Dieu, et une école pour les disciples de Jésus-Christ.
             </p>
             <div className="grid grid-cols-2 gap-4 mb-8">
               {["Adoration authentique", "Enseignement solide", "Prière fervent", "Service communautaire"].map((v) => (
@@ -269,7 +269,7 @@ export function CbaMpasa() {
             <div className="absolute inset-0 rounded-2xl ring-4 ring-amber-200/40" />
             <div className="absolute -top-5 -left-5 bg-white rounded-xl p-4 shadow-xl border border-amber-100">
               <div className="text-amber-700 font-semibold text-sm mb-1">📍 Adresse</div>
-              <div className="text-gray-700 text-sm font-medium">Quartier Mpasa III<br />Kinshasa, R.D. Congo</div>
+              <div className="text-gray-700 text-sm font-medium">Mpasa Mikonga<br />Kinshasa, R.D. Congo</div>
             </div>
           </div>
         </div>
@@ -319,7 +319,7 @@ export function CbaMpasa() {
 
             <div className="space-y-6">
               {[
-                { icon: MapPin, label: "Adresse", value: "Quartier Mpasa III, Commune de N'sele\nKinshasa, République Démocratique du Congo" },
+                { icon: MapPin, label: "Adresse", value: "Mpasa Mikonga, Commune de N'sele\nKinshasa, République Démocratique du Congo" },
                 { icon: Phone, label: "Téléphone", value: "+243 81 234 5678\n+243 99 876 5432" },
                 { icon: Mail, label: "Email", value: "contact@cbampasa.cd\ninfo@cbampasa.cd" },
                 { icon: Clock, label: "Bureau pastoral", value: "Lundi - Vendredi : 9h00 - 17h00\nSamedi : 10h00 - 14h00" },
@@ -385,11 +385,11 @@ export function CbaMpasa() {
               </div>
               <div>
                 <div className="font-['Playfair_Display'] font-bold text-lg text-white">CBA-MPASA</div>
-                <div className="text-xs text-gray-500">Communauté Baptiste Africaine</div>
+                <div className="text-xs text-gray-500">Citadelle de la Foi</div>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-gray-500 max-w-xs mb-5">
-              Enracinés dans la foi, unis dans l'amour, engagés pour la transformation de Mpasa et de la République Démocratique du Congo.
+              Centre d'Enseignement Biblique Appliqué — Citadelle de la Foi, engagée pour la transformation de Mpasa Mikonga et de toute la R.D. Congo.
             </p>
             <div className="flex gap-3">
               {[Facebook, Youtube, Instagram].map((Icon, i) => (
@@ -422,7 +422,7 @@ export function CbaMpasa() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-xs text-gray-600">
-          © {new Date().getFullYear()} CBA-MPASA — Communauté Baptiste Africaine de Mpasa. Tous droits réservés.
+          © {new Date().getFullYear()} CBA-MPASA — Centre d'Enseignement Biblique Appliqué · Citadelle de la Foi · Mpasa Mikonga, Kinshasa. Tous droits réservés.
           <br />
           <span className="text-amber-700/60">« La grâce et la paix vous soient données. » — Rom. 1:7</span>
         </div>
