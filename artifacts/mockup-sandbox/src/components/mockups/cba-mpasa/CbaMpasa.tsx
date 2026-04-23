@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Menu, X, Phone, Mail, MapPin, Clock, ChevronDown, Play,
   Heart, Book, Users, Music, ArrowRight, Facebook, Youtube,
@@ -19,10 +19,29 @@ const NAV_LINKS: { label: string; page: Page }[] = [
 /* ─── Shared Layout ─────────────────────────────────────── */
 function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) => void; children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Reset scroll + close menu on page change
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    setMenuOpen(false);
+  }, [page]);
+
+  const transparent = !scrolled;
+
   return (
     <div className="font-['Inter'] text-gray-900 bg-white min-h-screen flex flex-col overflow-x-hidden">
-      {/* Top Bar */}
-      <div className="bg-amber-700 text-amber-50 text-xs py-2 px-6 flex flex-wrap justify-between gap-2 shrink-0">
+      {/* Top Bar — slides out when transparent */}
+      <div
+        className={`bg-amber-700 text-amber-50 text-xs flex flex-wrap justify-between gap-2 px-6 overflow-hidden transition-all duration-500 shrink-0 ${transparent ? "max-h-0 py-0 opacity-0" : "max-h-10 py-2 opacity-100"}`}
+      >
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1"><Phone size={11} /> +243 81 234 5678</span>
           <span className="flex items-center gap-1"><Mail size={11} /> contact@cbampasa.cd</span>
@@ -36,15 +55,25 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
       </div>
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-white shadow-md border-b border-amber-100 shrink-0">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 shrink-0 ${
+          transparent
+            ? "bg-transparent border-b border-white/10"
+            : "bg-white shadow-md border-b border-amber-100"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
           <button onClick={() => setPage("accueil")} className="flex items-center gap-3 hover:opacity-80 transition">
             <div className="w-9 h-9 bg-amber-700 rounded-full flex items-center justify-center">
               <span className="text-white font-['Playfair_Display'] font-bold text-xs">CBA</span>
             </div>
             <div className="text-left">
-              <div className="font-['Playfair_Display'] font-bold text-lg text-amber-800 leading-none">CBA-MPASA</div>
-              <div className="text-[10px] text-gray-500 tracking-wide">Citadelle de la Foi</div>
+              <div className={`font-['Playfair_Display'] font-bold text-lg leading-none transition-colors duration-300 ${transparent ? "text-white" : "text-amber-800"}`}>
+                CBA-MPASA
+              </div>
+              <div className={`text-[10px] tracking-wide transition-colors duration-300 ${transparent ? "text-white/70" : "text-gray-500"}`}>
+                Citadelle de la Foi
+              </div>
             </div>
           </button>
 
@@ -53,10 +82,14 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
               <li key={l.page}>
                 <button
                   onClick={() => setPage(l.page)}
-                  className={`text-sm font-medium transition-colors duration-200 relative group pb-0.5 ${page === l.page ? "text-amber-700" : "text-gray-700 hover:text-amber-700"}`}
+                  className={`text-sm font-medium transition-colors duration-200 relative group pb-0.5 ${
+                    page === l.page
+                      ? transparent ? "text-amber-300" : "text-amber-700"
+                      : transparent ? "text-white/90 hover:text-amber-300" : "text-gray-700 hover:text-amber-700"
+                  }`}
                 >
                   {l.label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-amber-700 transition-all duration-300 ${page === l.page ? "w-full" : "w-0 group-hover:w-full"}`} />
+                  <span className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${transparent ? "bg-amber-300" : "bg-amber-700"} ${page === l.page ? "w-full" : "w-0 group-hover:w-full"}`} />
                 </button>
               </li>
             ))}
@@ -64,12 +97,16 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
 
           <button
             onClick={() => setPage("rejoindre")}
-            className="hidden lg:inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-200 shadow-md"
+            className={`hidden lg:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 ${
+              transparent
+                ? "bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm"
+                : "bg-amber-700 hover:bg-amber-800 text-white shadow-md"
+            }`}
           >
             Nous Rejoindre <ArrowRight size={13} />
           </button>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-gray-700">
+          <button onClick={() => setMenuOpen(!menuOpen)} className={`lg:hidden transition-colors duration-300 ${transparent ? "text-white" : "text-gray-700"}`}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
@@ -95,7 +132,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
         )}
       </nav>
 
-      {/* Page Content */}
+      {/* Page Content — no top padding: all pages start with a full-bleed hero */}
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
