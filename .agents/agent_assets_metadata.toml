@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Dn0M7hvfku8mgg5okX8PX"
+uri = "file://artifacts/mockup-sandbox/public/images/cba-hero.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "s81G8h2c9iOVAOa-FQJWJ"
+uri = "file://artifacts/mockup-sandbox/public/images/cba-worship.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "zQCZYD3xfUxDcrQC21vjq"
+uri = "file://artifacts/mockup-sandbox/public/images/cba-community.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "GxAOmryFoOKirX1MJv1sk"
+uri = "file://artifacts/mockup-sandbox/public/images/cba-bible.png"
+type = "image"
+title = "generated_image"
