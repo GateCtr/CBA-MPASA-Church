@@ -287,6 +287,8 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      <SermonsTimeline setPage={setPage} />
+
       <section className="relative py-20 px-6 overflow-hidden">
         <img src="/images/cba-bible.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-amber-900/87" />
@@ -299,6 +301,98 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
     </>
+  );
+}
+
+/* ─── Sermons Timeline (home) ─────────────────────────────────────── */
+function SermonsTimeline({ setPage }: { setPage: (p: Page) => void }) {
+  const items = SERMONS.slice(0, 5);
+  return (
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Historique des Prédications</div>
+          <h2 className="font-['Playfair_Display'] text-4xl font-bold text-gray-900 mb-3">Nos derniers messages</h2>
+          <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+            Revivez les enseignements diffusés depuis l'autel — thème, passage biblique, prédicateur et résumé. Chaque message est disponible en vidéo sur notre chaîne.
+          </p>
+        </div>
+
+        <ol className="relative border-l-2 border-amber-100 ml-4 md:ml-8 space-y-10">
+          {items.map((s, i) => (
+            <li key={s.title} className="relative pl-8 md:pl-12">
+              {/* dot */}
+              <div className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-700 ring-4 ring-amber-100 flex items-center justify-center">
+                <BookOpen size={10} className="text-white" />
+              </div>
+
+              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-md hover:border-amber-200 transition-all">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="text-[10px] uppercase tracking-widest text-amber-700 font-bold bg-amber-100/70 px-2.5 py-1 rounded-full">
+                    {s.date}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold bg-gray-100 px-2.5 py-1 rounded-full">
+                    {s.cat}
+                  </span>
+                  {i === 0 && (
+                    <span className="text-[10px] uppercase tracking-widest text-emerald-700 font-bold bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
+                      Dernier en date
+                    </span>
+                  )}
+                </div>
+
+                <div className="text-amber-700 text-xs font-semibold uppercase tracking-wider mb-1">Thème · {s.theme}</div>
+                <h3 className="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-snug">
+                  {s.title}
+                </h3>
+
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gray-600 mb-3">
+                  <span className="inline-flex items-center gap-1.5"><Book size={12} className="text-amber-700" /><strong className="text-gray-800">{s.ref}</strong></span>
+                  <span className="inline-flex items-center gap-1.5"><Mic2 size={12} className="text-amber-700" />{s.speaker}</span>
+                  <span className="inline-flex items-center gap-1.5"><Clock size={12} className="text-amber-700" />{s.duration}</span>
+                </div>
+
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  {s.summary}
+                </p>
+
+                <div className="flex flex-wrap gap-2.5">
+                  {s.youtube ? (
+                    <a
+                      href={s.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-4 py-2 rounded-full transition shadow-sm"
+                    >
+                      <Youtube size={13} /> Voir la vidéo
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-2 bg-gray-100 text-gray-500 text-xs font-semibold px-4 py-2 rounded-full">
+                      <Youtube size={13} /> Vidéo bientôt disponible
+                    </span>
+                  )}
+                  <button
+                    onClick={() => setPage("sermons")}
+                    className="inline-flex items-center gap-2 border border-amber-200 text-amber-800 hover:bg-amber-50 text-xs font-semibold px-4 py-2 rounded-full transition"
+                  >
+                    Plus de détails <ChevronRight size={13} />
+                  </button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="text-center mt-12">
+          <button
+            onClick={() => setPage("sermons")}
+            className="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-semibold px-7 py-3 rounded-full transition shadow-md"
+          >
+            Voir tout l'historique <ArrowRight size={14} />
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -618,13 +712,60 @@ function PageHoraires() {
 }
 
 /* ─── PAGE: Sermons ─────────────────────────────────────── */
-const SERMONS = [
-  { title: "Marche dans la Lumière de Dieu", speaker: "Pasteur Principal", date: "20 Avril 2025", duration: "52 min", ref: "Jean 8:12", cat: "Vie Chrétienne" },
-  { title: "La Foi qui Déplace les Montagnes", speaker: "Ancien Jean-Pierre Mbala", date: "13 Avril 2025", duration: "45 min", ref: "Matthieu 17:20", cat: "La Foi" },
-  { title: "L'Amour de Dieu Sans Condition", speaker: "Pasteur Principal", date: "6 Avril 2025", duration: "48 min", ref: "Jean 3:16", cat: "L'Évangile" },
-  { title: "Appliquer la Parole au Quotidien", speaker: "Pasteur Principal", date: "30 Mars 2025", duration: "55 min", ref: "Jacques 1:22", cat: "Enseignement" },
-  { title: "La Famille Selon Dieu", speaker: "Ancien Théodore Lumu", date: "23 Mars 2025", duration: "42 min", ref: "Éph. 5:22-33", cat: "Famille" },
-  { title: "La Puissance de la Prière", speaker: "Pasteur Principal", date: "16 Mars 2025", duration: "50 min", ref: "Phil. 4:6-7", cat: "Prière" },
+type SermonItem = {
+  title: string; speaker: string; date: string; duration: string;
+  ref: string; cat: string; theme: string; summary: string; youtube: string;
+};
+
+const SERMONS: SermonItem[] = [
+  {
+    title: "Marche dans la Lumière de Dieu",
+    speaker: "Pasteur Principal", date: "20 Avril 2025", duration: "52 min",
+    ref: "Jean 8:12", cat: "Vie Chrétienne",
+    theme: "Vivre dans la lumière",
+    summary: "Christ est la lumière du monde ; marcher dans Sa lumière, c'est sortir des ténèbres et porter du fruit visible dans nos foyers, nos métiers et nos quartiers.",
+    youtube: "https://youtu.be/dQw4w9WgXcQ",
+  },
+  {
+    title: "La Foi qui Déplace les Montagnes",
+    speaker: "Ancien Jean-Pierre Mbala", date: "13 Avril 2025", duration: "45 min",
+    ref: "Matthieu 17:20", cat: "La Foi",
+    theme: "La foi en action",
+    summary: "Une foi mesurée à un grain de sénevé suffit à Dieu pour renverser les obstacles ; encore faut-il l'exercer concrètement dans la prière et l'obéissance.",
+    youtube: "https://youtu.be/dQw4w9WgXcQ",
+  },
+  {
+    title: "L'Amour de Dieu Sans Condition",
+    speaker: "Pasteur Principal", date: "6 Avril 2025", duration: "48 min",
+    ref: "Jean 3:16", cat: "L'Évangile",
+    theme: "Au cœur de l'Évangile",
+    summary: "Dieu nous a aimés le premier en livrant Son Fils. Cet amour gratuit transforme notre identité et nous appelle à aimer en retour, sans condition.",
+    youtube: "https://youtu.be/dQw4w9WgXcQ",
+  },
+  {
+    title: "Appliquer la Parole au Quotidien",
+    speaker: "Pasteur Principal", date: "30 Mars 2025", duration: "55 min",
+    ref: "Jacques 1:22", cat: "Enseignement",
+    theme: "Mettre la Parole en pratique",
+    summary: "Écouter ne suffit pas : la Parole nous transforme quand elle devient action. Quatre clés pratiques pour passer du sermon du dimanche à la vie de la semaine.",
+    youtube: "https://youtu.be/dQw4w9WgXcQ",
+  },
+  {
+    title: "La Famille Selon Dieu",
+    speaker: "Ancien Théodore Lumu", date: "23 Mars 2025", duration: "42 min",
+    ref: "Éph. 5:22-33", cat: "Famille",
+    theme: "Le foyer, premier autel",
+    summary: "Le mariage et la famille sont l'image de Christ et de l'Église. Restaurer nos foyers, c'est restaurer notre nation — un pilier de la vision MGRN.",
+    youtube: "",
+  },
+  {
+    title: "La Puissance de la Prière",
+    speaker: "Pasteur Principal", date: "16 Mars 2025", duration: "50 min",
+    ref: "Phil. 4:6-7", cat: "Prière",
+    theme: "Prier sans se décourager",
+    summary: "L'inquiétude est désarmée par la prière reconnaissante. Dieu ne promet pas toujours la solution immédiate, mais Sa paix qui surpasse toute intelligence.",
+    youtube: "https://youtu.be/dQw4w9WgXcQ",
+  },
 ];
 
 function PageSermons() {
