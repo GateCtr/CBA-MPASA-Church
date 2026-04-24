@@ -1,0 +1,33 @@
+{
+  "name": "CBA-MPASA — Citadelle de la Foi",
+  "short_name": "CBA-MPASA",
+  "description": "Église évangélique CBA-MPASA, Assemblée de Mpasa. Cultes, sermons, événements, dons et demandes de prière.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fffbeb",
+  "theme_color": "#b45309",
+  "lang": "fr-CD",
+  "categories": ["lifestyle", "religion", "education"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/cba-hero.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Culte en Direct", "short_name": "Direct", "url": "/?p=direct", "description": "Suivre le culte en direct" },
+    { "name": "Sermons", "short_name": "Sermons", "url": "/?p=sermons", "description": "Écouter les derniers messages" },
+    { "name": "Demandes de prière", "short_name": "Prière", "url": "/?p=priere", "description": "Soumettre une intention de prière" },
+    { "name": "Faire un don", "short_name": "Don", "url": "/?p=don", "description": "Soutenir l'œuvre de Dieu" }
+  ]
+}

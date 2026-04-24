@@ -4,10 +4,11 @@ import {
   Heart, Book, Users, Music, ArrowRight, Facebook, Youtube,
   Instagram, BookOpen, HandHeart, ChevronRight, Send, CalendarDays, Mic2,
   Radio, Image as ImageIcon, Calendar, MapPinned, Sparkles, Lock,
+  Gift, HandHelping, Copy, Check, Smartphone, Quote, Shield, Trash2,
 } from "lucide-react";
 import AdminApp from "./admin";
 
-type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "direct" | "galerie" | "evenements" | "contact" | "rejoindre" | "admin";
+type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "direct" | "galerie" | "evenements" | "contact" | "rejoindre" | "don" | "priere" | "admin";
 
 const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Accueil", page: "accueil" },
@@ -18,6 +19,7 @@ const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Galerie", page: "galerie" },
   { label: "Horaires", page: "horaires" },
   { label: "Sermons", page: "sermons" },
+  { label: "Prière", page: "priere" },
   { label: "Contact", page: "contact" },
 ];
 
@@ -99,24 +101,42 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             ))}
           </ul>
 
-          <button
-            onClick={() => setPage("rejoindre")}
-            className={`hidden lg:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 ${
-              transparent
-                ? "bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm"
-                : "bg-amber-700 hover:bg-amber-800 text-white shadow-md"
-            }`}
-          >
-            Nous Rejoindre <ArrowRight size={13} />
-          </button>
+          <div className="hidden lg:flex items-center gap-2">
+            <button
+              onClick={() => setPage("don")}
+              className={`inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-full transition-all duration-300 ${
+                transparent
+                  ? "bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-300/40 backdrop-blur-sm"
+                  : "bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200"
+              }`}
+            >
+              <Gift size={13} /> Don
+            </button>
+            <button
+              onClick={() => setPage("rejoindre")}
+              className={`inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 ${
+                transparent
+                  ? "bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm"
+                  : "bg-amber-700 hover:bg-amber-800 text-white shadow-md"
+              }`}
+            >
+              Nous Rejoindre <ArrowRight size={13} />
+            </button>
+          </div>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className={`lg:hidden transition-colors duration-300 ${transparent ? "text-white" : "text-gray-700"}`}>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className={`lg:hidden transition-colors duration-300 ${transparent ? "text-white" : "text-gray-700"}`}
+          >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden bg-white border-t border-amber-50 px-6 pb-4">
+          <div id="mobile-menu" className="lg:hidden bg-white border-t border-amber-50 px-6 pb-4">
             {NAV_LINKS.map((l) => (
               <button
                 key={l.page}
@@ -127,8 +147,14 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
               </button>
             ))}
             <button
+              onClick={() => { setPage("don"); setMenuOpen(false); }}
+              className="mt-3 w-full bg-amber-50 border border-amber-200 text-amber-800 text-sm font-semibold py-2.5 rounded-full inline-flex items-center justify-center gap-2"
+            >
+              <Gift size={13} /> Faire un don
+            </button>
+            <button
               onClick={() => { setPage("rejoindre"); setMenuOpen(false); }}
-              className="mt-3 w-full bg-amber-700 text-white text-sm font-semibold py-2.5 rounded-full"
+              className="mt-2 w-full bg-amber-700 text-white text-sm font-semibold py-2.5 rounded-full"
             >
               Nous Rejoindre
             </button>
@@ -188,6 +214,20 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             © {new Date().getFullYear()} CBA-MPASA · Centre d'Évangélisation et d'Enseignements Bibliques Appliqués · Assemblée de Mpasa · Citadelle de la Foi
           </div>
           <span className="text-amber-700/60">« La grâce et la paix vous soient données. » — Rom. 1:7</span>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+            <button
+              onClick={() => setPage("don")}
+              className="inline-flex items-center gap-1.5 text-[11px] bg-amber-700 hover:bg-amber-600 text-white px-3 py-1.5 rounded-full font-semibold transition"
+            >
+              <Gift size={11} /> Soutenir l'œuvre
+            </button>
+            <button
+              onClick={() => setPage("priere")}
+              className="inline-flex items-center gap-1.5 text-[11px] bg-gray-800 hover:bg-gray-700 text-amber-300 px-3 py-1.5 rounded-full font-semibold transition"
+            >
+              <HandHelping size={11} /> Demander une prière
+            </button>
+          </div>
           <button
             onClick={() => setPage("admin")}
             className="mt-2 inline-flex items-center gap-1.5 text-[10px] text-gray-600 hover:text-amber-400 transition"
@@ -252,6 +292,8 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
           ))}
         </div>
       </section>
+
+      <VersetDuJour setPage={setPage} />
 
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -1407,9 +1449,535 @@ function PageRejoindre({ setPage }: { setPage: (p: Page) => void }) {
   );
 }
 
+/* ─── Verset du jour (home widget) ─────────────────────────────────────── */
+const VERSETS_DU_JOUR = [
+  { ref: "Jérémie 29:11", text: "Car je connais les projets que j'ai formés sur vous, dit l'Éternel, projets de paix et non de malheur, afin de vous donner un avenir et de l'espérance." },
+  { ref: "Philippiens 4:13", text: "Je puis tout par celui qui me fortifie." },
+  { ref: "Psaume 23:1", text: "L'Éternel est mon berger : je ne manquerai de rien." },
+  { ref: "Romains 8:28", text: "Nous savons, du reste, que toutes choses concourent au bien de ceux qui aiment Dieu, de ceux qui sont appelés selon son dessein." },
+  { ref: "Ésaïe 41:10", text: "Ne crains rien, car je suis avec toi ; ne promène pas des regards inquiets, car je suis ton Dieu ; je te fortifie, je viens à ton secours, je te soutiens de ma droite triomphante." },
+  { ref: "Proverbes 3:5-6", text: "Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse ; reconnais-le dans toutes tes voies, et il aplanira tes sentiers." },
+  { ref: "Matthieu 11:28", text: "Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos." },
+  { ref: "Psaume 46:2", text: "Dieu est pour nous un refuge et un appui, un secours qui ne manque jamais dans la détresse." },
+  { ref: "Jean 14:6", text: "Jésus lui dit : Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi." },
+  { ref: "1 Jean 4:8", text: "Celui qui n'aime pas n'a pas connu Dieu, car Dieu est amour." },
+  { ref: "Psaume 119:105", text: "Ta parole est une lampe à mes pieds, et une lumière sur mon sentier." },
+  { ref: "Matthieu 6:33", text: "Cherchez premièrement le royaume et la justice de Dieu ; et toutes ces choses vous seront données par-dessus." },
+  { ref: "Romains 12:2", text: "Ne vous conformez pas au siècle présent, mais soyez transformés par le renouvellement de l'intelligence." },
+  { ref: "Psaume 27:1", text: "L'Éternel est ma lumière et mon salut : de qui aurais-je crainte ? L'Éternel est le soutien de ma vie : de qui aurais-je peur ?" },
+  { ref: "2 Corinthiens 5:17", text: "Si quelqu'un est en Christ, il est une nouvelle créature. Les choses anciennes sont passées ; voici, toutes choses sont devenues nouvelles." },
+  { ref: "Galates 5:22-23", text: "Le fruit de l'Esprit, c'est l'amour, la joie, la paix, la patience, la bonté, la bénignité, la fidélité, la douceur, la tempérance." },
+  { ref: "Hébreux 11:1", text: "La foi est une ferme assurance des choses qu'on espère, une démonstration de celles qu'on ne voit pas." },
+  { ref: "Jacques 1:5", text: "Si quelqu'un d'entre vous manque de sagesse, qu'il la demande à Dieu, qui donne à tous simplement et sans reproche, et elle lui sera donnée." },
+  { ref: "Matthieu 5:14", text: "Vous êtes la lumière du monde. Une ville située sur une montagne ne peut être cachée." },
+  { ref: "Psaume 91:1-2", text: "Celui qui demeure sous l'abri du Très-Haut repose à l'ombre du Tout-Puissant. Je dis à l'Éternel : Mon refuge et ma forteresse, mon Dieu en qui je me confie !" },
+  { ref: "Éphésiens 2:8", text: "C'est par la grâce que vous êtes sauvés, par le moyen de la foi. Et cela ne vient pas de vous, c'est le don de Dieu." },
+  { ref: "Romains 10:9", text: "Si tu confesses de ta bouche le Seigneur Jésus, et si tu crois dans ton cœur que Dieu l'a ressuscité des morts, tu seras sauvé." },
+  { ref: "Actes 1:8", text: "Vous recevrez une puissance, le Saint-Esprit survenant sur vous, et vous serez mes témoins jusqu'aux extrémités de la terre." },
+  { ref: "Marc 11:24", text: "Tout ce que vous demanderez en priant, croyez que vous l'avez reçu, et vous le verrez s'accomplir." },
+  { ref: "Lamentations 3:22-23", text: "Les bontés de l'Éternel ne sont pas épuisées, ses compassions ne sont pas à leur terme ; elles se renouvellent chaque matin. Oh ! que ta fidélité est grande !" },
+  { ref: "Sophonie 3:17", text: "L'Éternel, ton Dieu, est au milieu de toi, comme un héros qui sauve ; il fera de toi sa plus grande joie ; il gardera le silence dans son amour ; il aura pour toi des transports d'allégresse." },
+  { ref: "Psaume 34:9", text: "Sentez et voyez combien l'Éternel est bon ! Heureux l'homme qui cherche en lui son refuge !" },
+  { ref: "1 Corinthiens 13:13", text: "Maintenant donc ces trois choses demeurent : la foi, l'espérance, la charité ; mais la plus grande de ces choses, c'est la charité." },
+  { ref: "Josué 1:9", text: "Fortifie-toi et prends courage. Ne t'effraie point et ne t'épouvante point, car l'Éternel, ton Dieu, est avec toi dans tout ce que tu entreprendras." },
+  { ref: "Psaume 121:1-2", text: "Je lève mes yeux vers les montagnes... D'où me viendra le secours ? Le secours me vient de l'Éternel, qui a fait les cieux et la terre." },
+  { ref: "Apocalypse 3:20", text: "Voici, je me tiens à la porte, et je frappe. Si quelqu'un entend ma voix et ouvre la porte, j'entrerai chez lui, je souperai avec lui, et lui avec moi." },
+];
+
+function getVersetDuJour() {
+  const start = new Date(new Date().getFullYear(), 0, 0);
+  const diff = Date.now() - start.getTime();
+  const dayOfYear = Math.floor(diff / 86400000);
+  return VERSETS_DU_JOUR[dayOfYear % VERSETS_DU_JOUR.length];
+}
+
+function VersetDuJour({ setPage }: { setPage: (p: Page) => void }) {
+  const v = getVersetDuJour();
+  const today = new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+
+  return (
+    <section className="py-16 px-6 bg-white">
+      <div className="max-w-4xl mx-auto">
+        <div className="relative bg-gradient-to-br from-amber-50 via-white to-amber-50 border border-amber-100 rounded-3xl p-8 md:p-12 shadow-sm overflow-hidden">
+          <div className="absolute -top-6 -left-6 text-amber-100">
+            <Quote size={120} className="rotate-180" />
+          </div>
+          <div className="relative">
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <div>
+                <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-1">Verset du jour</div>
+                <div className="text-gray-500 text-xs capitalize">{today}</div>
+              </div>
+              <button
+                onClick={() => setPage("priere")}
+                className="inline-flex items-center gap-1.5 text-xs bg-white border border-amber-200 text-amber-800 hover:bg-amber-50 px-3 py-1.5 rounded-full font-semibold transition"
+              >
+                <HandHelping size={12} /> Soumettre une prière
+              </button>
+            </div>
+            <blockquote className="font-['Playfair_Display'] text-xl md:text-2xl text-gray-900 leading-relaxed font-bold mb-4">
+              « {v.text} »
+            </blockquote>
+            <cite className="text-amber-800 font-semibold text-sm not-italic">— {v.ref}</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── PAGE: Don (Mobile Money) ─────────────────────────────────────── */
+const DON_METHODES = [
+  {
+    nom: "M-Pesa (Vodacom)",
+    couleur: "from-red-600 to-red-700",
+    accent: "text-red-100",
+    numero: "+243 81 234 5678",
+    nomCompte: "CBA-MPASA / Citadelle de la Foi",
+    instructions: [
+      "Composez *123# sur votre téléphone Vodacom",
+      "Choisissez « Envoi d'argent » → « Vers un autre numéro »",
+      "Saisissez le numéro ci-dessus",
+      "Indiquez le montant et confirmez avec votre code PIN",
+      "Envoyez-nous le SMS de confirmation par WhatsApp pour le reçu",
+    ],
+  },
+  {
+    nom: "Airtel Money",
+    couleur: "from-rose-600 to-red-600",
+    accent: "text-rose-100",
+    numero: "+243 99 123 4567",
+    nomCompte: "CBA-MPASA / Citadelle de la Foi",
+    instructions: [
+      "Composez *501# sur votre téléphone Airtel",
+      "Choisissez « Transfert d'argent »",
+      "Saisissez le numéro ci-dessus",
+      "Indiquez le montant et validez avec votre code PIN",
+      "Conservez le SMS de confirmation comme preuve",
+    ],
+  },
+  {
+    nom: "Orange Money",
+    couleur: "from-orange-500 to-amber-600",
+    accent: "text-orange-100",
+    numero: "+243 89 555 6789",
+    nomCompte: "CBA-MPASA / Citadelle de la Foi",
+    instructions: [
+      "Composez #144# sur votre téléphone Orange",
+      "Choisissez « Transfert d'argent » → « Vers un client OM »",
+      "Saisissez le numéro ci-dessus",
+      "Indiquez le montant et confirmez avec votre code PIN",
+      "Notez la référence de transaction reçue par SMS",
+    ],
+  },
+];
+
+const DON_CATEGORIES = [
+  { titre: "Dîme", desc: "« Apportez à la maison du trésor toutes les dîmes » — Mal. 3:10", icon: Gift },
+  { titre: "Offrande", desc: "Action de grâce libre selon la disposition du cœur", icon: Heart },
+  { titre: "Mission MGRN", desc: "Soutenir la Mission de Guérison et Restauration des Nations", icon: HandHelping },
+  { titre: "Œuvres sociales", desc: "Aide aux veuves, orphelins et nécessiteux", icon: Users },
+];
+
+function PageDon({ setPage }: { setPage: (p: Page) => void }) {
+  const [copied, setCopied] = useState<string | null>(null);
+  const copy = (txt: string) => {
+    navigator.clipboard?.writeText(txt).then(() => {
+      setCopied(txt);
+      setTimeout(() => setCopied(null), 2000);
+    });
+  };
+
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden">
+        <img src="/images/cba-worship.png" alt="Faire un don" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-amber-900/85" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="text-amber-300 text-xs font-semibold uppercase tracking-widest mb-2">✝ Soutenir l'œuvre de Dieu</div>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Faire un don</h1>
+          <p className="text-amber-100 text-sm mt-2 max-w-xl">Votre générosité fait avancer la mission MGRN et soutient la vie de l'église à Mpasa.</p>
+        </div>
+      </div>
+
+      <section className="py-16 px-6 bg-amber-50/40">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Pour quoi donnez-vous ?</div>
+            <h2 className="font-['Playfair_Display'] text-3xl font-bold text-gray-900">Choisissez la nature de votre don</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {DON_CATEGORIES.map((c) => (
+              <div key={c.titre} className="bg-white border border-amber-100 rounded-2xl p-6 hover:shadow-md transition-all">
+                <div className="w-11 h-11 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                  <c.icon className="text-amber-700" size={20} />
+                </div>
+                <h3 className="font-['Playfair_Display'] text-base font-bold text-gray-900 mb-2">{c.titre}</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Mobile Money</div>
+            <h2 className="font-['Playfair_Display'] text-3xl font-bold text-gray-900 mb-3">3 façons simples de donner</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm">Choisissez votre opérateur mobile et suivez les instructions. Le numéro de transfert est enregistré au nom de l'église.</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {DON_METHODES.map((m) => (
+              <div key={m.nom} className="rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+                <div className={`bg-gradient-to-br ${m.couleur} p-6 text-white`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Smartphone size={18} />
+                    <h3 className="font-['Playfair_Display'] text-lg font-bold">{m.nom}</h3>
+                  </div>
+                  <div className={`text-xs uppercase tracking-wider ${m.accent} mb-1`}>Numéro marchand</div>
+                  <div className="flex items-center gap-2">
+                    <div className="font-mono text-lg font-bold">{m.numero}</div>
+                    <button
+                      onClick={() => copy(m.numero)}
+                      className="ml-auto inline-flex items-center gap-1 bg-white/15 hover:bg-white/25 backdrop-blur px-2.5 py-1 rounded-md text-xs font-semibold transition"
+                      aria-label={`Copier ${m.numero}`}
+                    >
+                      {copied === m.numero ? <Check size={12} /> : <Copy size={12} />}
+                      {copied === m.numero ? "Copié" : "Copier"}
+                    </button>
+                  </div>
+                  <div className={`text-[11px] mt-2 ${m.accent}`}>Au nom de : <strong className="text-white">{m.nomCompte}</strong></div>
+                </div>
+                <div className="bg-white p-6 flex-1">
+                  <div className="text-amber-700 text-[10px] font-bold uppercase tracking-widest mb-3">Comment faire</div>
+                  <ol className="space-y-2.5">
+                    {m.instructions.map((s, i) => (
+                      <li key={i} className="flex gap-3 text-xs text-gray-700 leading-relaxed">
+                        <span className="shrink-0 w-5 h-5 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center font-bold text-[10px]">{i + 1}</span>
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 px-6 bg-gray-50">
+        <div className="max-w-3xl mx-auto bg-white border border-gray-100 rounded-2xl p-7 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
+              <Shield className="text-emerald-700" size={20} />
+            </div>
+            <div>
+              <h3 className="font-['Playfair_Display'] text-lg font-bold text-gray-900 mb-2">Reçu et confidentialité</h3>
+              <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                Pour recevoir un reçu officiel, transférez le SMS de confirmation par WhatsApp au <strong>+243 81 234 5678</strong> ou par e-mail à <strong>dons@cbampasa.cd</strong> avec votre nom et la nature du don. Vos coordonnées restent strictement confidentielles.
+              </p>
+              <button
+                onClick={() => setPage("contact")}
+                className="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition"
+              >
+                Contacter le bureau pastoral <ArrowRight size={13} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-16 px-6 overflow-hidden">
+        <img src="/images/cba-bible.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-amber-900/87" />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <Quote className="text-amber-300 mx-auto mb-4" size={28} />
+          <blockquote className="font-['Playfair_Display'] text-2xl text-white font-bold leading-snug mb-4">
+            « Que chacun donne comme il l'a résolu en son cœur, sans tristesse ni contrainte ; car Dieu aime celui qui donne avec joie. »
+          </blockquote>
+          <cite className="text-amber-300 text-sm font-medium">2 Corinthiens 9:7</cite>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ─── PAGE: Prière (verset + demandes) ─────────────────────────────────────── */
+type PriereItem = { id: string; nom: string; texte: string; categorie: string; date: string; intercesseurs: number };
+
+const STORAGE_PRIERES = "cbampasa_prieres";
+const STORAGE_INTERCESSIONS = "cbampasa_intercessions";
+
+const SEED_PRIERES: PriereItem[] = [
+  { id: "p1", nom: "Maman Claudine", texte: "Pour la guérison de ma fille hospitalisée depuis trois semaines.", categorie: "Santé", date: "Il y a 2 jours", intercesseurs: 47 },
+  { id: "p2", nom: "Frère Joseph", texte: "Pour un emploi stable afin de subvenir aux besoins de ma famille.", categorie: "Travail", date: "Il y a 4 jours", intercesseurs: 32 },
+  { id: "p3", nom: "Anonyme", texte: "Restauration de mon couple, sagesse et paix dans le foyer.", categorie: "Famille", date: "Il y a 5 jours", intercesseurs: 89 },
+  { id: "p4", nom: "Sœur Esther", texte: "Pour mes enfants à l'école, qu'ils craignent l'Éternel et réussissent.", categorie: "Famille", date: "Il y a 1 semaine", intercesseurs: 56 },
+];
+
+const PRIERE_CATEGORIES = ["Santé", "Famille", "Travail", "Études", "Mission", "Délivrance", "Action de grâce", "Autre"];
+
+function loadPrieres(): PriereItem[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_PRIERES);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return SEED_PRIERES;
+}
+function savePrieres(list: PriereItem[]) {
+  try { localStorage.setItem(STORAGE_PRIERES, JSON.stringify(list)); } catch {}
+}
+function loadIntercessions(): Record<string, boolean> {
+  try {
+    const raw = localStorage.getItem(STORAGE_INTERCESSIONS);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return {};
+}
+function saveIntercessions(map: Record<string, boolean>) {
+  try { localStorage.setItem(STORAGE_INTERCESSIONS, JSON.stringify(map)); } catch {}
+}
+
+function PagePriere() {
+  const verset = getVersetDuJour();
+  const [prieres, setPrieres] = useState<PriereItem[]>(() => loadPrieres());
+  const [interceded, setInterceded] = useState<Record<string, boolean>>(() => loadIntercessions());
+  const [form, setForm] = useState({ nom: "", texte: "", categorie: "Santé", anonyme: false });
+  const [sent, setSent] = useState(false);
+
+  useEffect(() => savePrieres(prieres), [prieres]);
+  useEffect(() => saveIntercessions(interceded), [interceded]);
+
+  const intercede = (id: string) => {
+    if (interceded[id]) return;
+    setInterceded({ ...interceded, [id]: true });
+    setPrieres((list) => list.map((p) => (p.id === id ? { ...p, intercesseurs: p.intercesseurs + 1 } : p)));
+  };
+
+  const supprimer = (id: string) => {
+    setPrieres((list) => list.filter((p) => p.id !== id));
+  };
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.texte.trim()) return;
+    const nouveau: PriereItem = {
+      id: "local_" + Date.now(),
+      nom: form.anonyme || !form.nom.trim() ? "Anonyme" : form.nom.trim(),
+      texte: form.texte.trim(),
+      categorie: form.categorie,
+      date: "À l'instant",
+      intercesseurs: 0,
+    };
+    setPrieres([nouveau, ...prieres]);
+    setForm({ nom: "", texte: "", categorie: "Santé", anonyme: false });
+    setSent(true);
+    setTimeout(() => setSent(false), 4000);
+  };
+
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden">
+        <img src="/images/cba-bible.png" alt="Demandes de prière" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-amber-900/85" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="text-amber-300 text-xs font-semibold uppercase tracking-widest mb-2">✝ Mur de prière</div>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Prions ensemble</h1>
+          <p className="text-amber-100 text-sm mt-2 max-w-xl">Soumettez votre intention et intercédez pour vos frères et sœurs.</p>
+        </div>
+      </div>
+
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-amber-50 via-white to-amber-50 border border-amber-100 rounded-3xl p-8 relative overflow-hidden">
+            <div className="absolute -top-4 -left-4 text-amber-100">
+              <Quote size={90} className="rotate-180" />
+            </div>
+            <div className="relative">
+              <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Verset du jour</div>
+              <blockquote className="font-['Playfair_Display'] text-xl md:text-2xl text-gray-900 leading-relaxed font-bold mb-3">
+                « {verset.text} »
+              </blockquote>
+              <cite className="text-amber-800 font-semibold text-sm not-italic">— {verset.ref}</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 px-6 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Soumettre une intention</div>
+            <h2 className="font-['Playfair_Display'] text-3xl font-bold text-gray-900 mb-2">Partagez votre fardeau</h2>
+            <p className="text-sm text-gray-500 max-w-lg mx-auto">L'équipe pastorale et les fidèles intercéderont pour vous. Vous pouvez rester anonyme.</p>
+          </div>
+
+          <form onSubmit={submit} className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="priere-nom" className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Votre nom</label>
+                <input
+                  id="priere-nom"
+                  type="text"
+                  value={form.nom}
+                  onChange={(e) => setForm({ ...form, nom: e.target.value })}
+                  disabled={form.anonyme}
+                  placeholder="Prénom (optionnel)"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 outline-none text-sm disabled:bg-gray-50 disabled:text-gray-400"
+                />
+              </div>
+              <div>
+                <label htmlFor="priere-categorie" className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Catégorie</label>
+                <select
+                  id="priere-categorie"
+                  value={form.categorie}
+                  onChange={(e) => setForm({ ...form, categorie: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 outline-none text-sm bg-white"
+                >
+                  {PRIERE_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+                </select>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="priere-texte" className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Votre demande</label>
+              <textarea
+                id="priere-texte"
+                value={form.texte}
+                onChange={(e) => setForm({ ...form, texte: e.target.value })}
+                required
+                rows={4}
+                placeholder="Partagez avec vos frères et sœurs ce pour quoi vous souhaitez prier…"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 outline-none text-sm resize-none"
+              />
+            </div>
+            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.anonyme}
+                onChange={(e) => setForm({ ...form, anonyme: e.target.checked })}
+                className="w-4 h-4 accent-amber-700"
+              />
+              Publier en anonyme
+            </label>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-semibold px-6 py-3 rounded-full transition shadow-md"
+              >
+                <Send size={14} /> Soumettre ma demande
+              </button>
+              {sent && (
+                <span className="inline-flex items-center gap-1.5 text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-semibold">
+                  <Check size={12} /> Reçue — l'église prie pour vous
+                </span>
+              )}
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section className="py-14 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Mur de prière</div>
+            <h2 className="font-['Playfair_Display'] text-3xl font-bold text-gray-900 mb-2">Intercédons les uns pour les autres</h2>
+            <p className="text-sm text-gray-500">« Confessez donc vos péchés les uns aux autres, et priez les uns pour les autres » — Jacques 5:16</p>
+          </div>
+
+          {prieres.length === 0 ? (
+            <div className="text-center py-16 text-gray-500 text-sm">Aucune demande pour le moment. Soyez le premier à soumettre une intention.</div>
+          ) : (
+            <ul className="space-y-4">
+              {prieres.map((p) => {
+                const aPrie = !!interceded[p.id];
+                const estLocal = p.id.startsWith("local_");
+                return (
+                  <li key={p.id} className="bg-amber-50/40 border border-amber-100 rounded-2xl p-5 hover:shadow-sm transition">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-amber-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          {p.nom.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-sm text-gray-900">{p.nom}</div>
+                          <div className="text-[11px] text-gray-500">{p.date}</div>
+                        </div>
+                      </div>
+                      <span className="text-[10px] uppercase tracking-widest bg-white border border-amber-200 text-amber-800 font-bold px-2.5 py-1 rounded-full">
+                        {p.categorie}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed mb-4 pl-1">{p.texte}</p>
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <div className="text-xs text-gray-600">
+                        <strong className="text-amber-800">{p.intercesseurs}</strong> {p.intercesseurs > 1 ? "intercesseurs prient" : "intercesseur prie"} pour cette demande
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => intercede(p.id)}
+                          disabled={aPrie}
+                          className={`inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full transition ${
+                            aPrie
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200 cursor-default"
+                              : "bg-amber-700 hover:bg-amber-800 text-white shadow-sm"
+                          }`}
+                        >
+                          {aPrie ? <><Check size={12} /> J'ai prié</> : <><HandHelping size={12} /> Je prie pour vous</>}
+                        </button>
+                        {estLocal && (
+                          <button
+                            onClick={() => supprimer(p.id)}
+                            className="inline-flex items-center gap-1 text-[11px] text-gray-400 hover:text-red-600 transition"
+                            title="Retirer (uniquement vos demandes locales)"
+                          >
+                            <Trash2 size={12} />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 /* ─── Root ─────────────────────────────────────── */
+const VALID_PAGES: Page[] = [
+  "accueil", "apropos", "ministeres", "horaires", "sermons", "direct",
+  "galerie", "evenements", "contact", "rejoindre", "don", "priere",
+];
+
 export default function App() {
-  const [page, setPage] = useState<Page>("accueil");
+  const [page, setPageState] = useState<Page>(() => {
+    if (typeof window === "undefined") return "accueil";
+    const p = new URLSearchParams(window.location.search).get("p") as Page | null;
+    return p && (VALID_PAGES as string[]).includes(p) ? p : "accueil";
+  });
+
+  const setPage = (p: Page) => {
+    setPageState(p);
+    if (typeof window !== "undefined") {
+      const url = p === "accueil" ? window.location.pathname : `${window.location.pathname}?p=${p}`;
+      window.history.pushState({ page: p }, "", url);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onPop = () => {
+      const p = new URLSearchParams(window.location.search).get("p") as Page | null;
+      setPageState(p && (VALID_PAGES as string[]).includes(p) ? p : "accueil");
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   if (page === "admin") {
     return <AdminApp onExit={() => setPage("accueil")} />;
@@ -1427,6 +1995,8 @@ export default function App() {
       case "evenements": return <PageEvenements setPage={setPage} />;
       case "contact":    return <PageContact />;
       case "rejoindre":  return <PageRejoindre setPage={setPage} />;
+      case "don":        return <PageDon setPage={setPage} />;
+      case "priere":     return <PagePriere />;
       default:           return <PageAccueil setPage={setPage} />;
     }
   })();
