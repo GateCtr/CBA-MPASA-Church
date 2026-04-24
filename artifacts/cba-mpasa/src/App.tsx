@@ -12,7 +12,7 @@ const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Accueil", page: "accueil" },
   { label: "À Propos", page: "apropos" },
   { label: "Direct", page: "direct" },
-  { label: "Ministères", page: "ministeres" },
+  { label: "Structures", page: "ministeres" },
   { label: "Événements", page: "evenements" },
   { label: "Galerie", page: "galerie" },
   { label: "Horaires", page: "horaires" },
@@ -48,7 +48,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1"><Phone size={11} /> +243 81 234 5678</span>
           <span className="flex items-center gap-1"><Mail size={11} /> contact@cbampasa.cd</span>
-          <span className="flex items-center gap-1"><MapPin size={11} /> Mpasa Mikonga, Kinshasa</span>
+          <span className="flex items-center gap-1"><MapPin size={11} /> Av. Montali 58, Q. Tala Ngai — Mpasa</span>
         </div>
         <div className="flex items-center gap-3">
           <a href="#" className="hover:text-white transition"><Facebook size={13} /></a>
@@ -151,7 +151,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-gray-500 max-w-xs mb-4">
-              Centre d'Enseignement Biblique Appliqué — engagée pour la transformation de Mpasa Mikonga et de toute la R.D. Congo.
+              Centre d'Évangélisation et d'Enseignements Bibliques Appliqués — Assemblée de Mpasa. Engagée pour la transformation de la nation par MGRN.
             </p>
             <div className="flex gap-3">
               {[Facebook, Youtube, Instagram].map((Icon, i) => (
@@ -172,16 +172,18 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-xs mb-4 uppercase tracking-wide">Cultes</h4>
+            <h4 className="text-white font-semibold text-xs mb-4 uppercase tracking-wide">Cultes & Réunions</h4>
             <ul className="space-y-2 text-sm text-gray-500">
-              <li className="flex items-center gap-2"><Clock size={11} /> Dimanche 9h00 & 17h00</li>
-              <li className="flex items-center gap-2"><Clock size={11} /> Mercredi 18h30</li>
-              <li className="flex items-center gap-2"><MapPin size={11} /> Mpasa Mikonga, Kinshasa</li>
+              <li className="flex items-center gap-2"><Clock size={11} /> Dimanche : 9h – 12h</li>
+              <li className="flex items-center gap-2"><Clock size={11} /> Mardi & Jeudi : 17h – 19h</li>
+              <li className="flex items-center gap-2"><Clock size={11} /> Mercredi : 9h – 12h</li>
+              <li className="flex items-center gap-2"><Clock size={11} /> Lundi (Mamans Deborah) : 9h – 16h</li>
+              <li className="flex items-center gap-2"><MapPin size={11} /> Av. Montali 58, Q. Tala Ngai — Mpasa</li>
             </ul>
           </div>
         </div>
         <div className="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
-          © {new Date().getFullYear()} CBA-MPASA · Centre d'Enseignement Biblique Appliqué · Citadelle de la Foi · Mpasa Mikonga, Kinshasa
+          © {new Date().getFullYear()} CBA-MPASA · Centre d'Évangélisation et d'Enseignements Bibliques Appliqués · Assemblée de Mpasa · Citadelle de la Foi
           <br /><span className="text-amber-700/60">« La grâce et la paix vous soient données. » — Rom. 1:7</span>
         </div>
       </footer>
@@ -197,15 +199,19 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
         <img src="/images/cba-hero.png" alt="CBA-MPASA" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/50 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
-          <div className="max-w-lg">
-            <div className="inline-flex items-center gap-2 bg-amber-600/20 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+          <div className="max-w-xl mt-12 md:mt-0">
+            <div className="inline-flex items-center gap-2 bg-amber-600/20 border border-amber-400/40 text-amber-300 text-[11px] md:text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5 backdrop-blur-sm">
               ✝ Bienvenue chez vous
             </div>
-            <h1 className="font-['Playfair_Display'] text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
-              Centre d'Enseignement<br /><span className="text-amber-400">Biblique Appliqué</span>
+            <h1 className="font-['Playfair_Display'] font-bold text-white leading-[1.05] mb-4 text-4xl md:text-5xl lg:text-6xl">
+              Citadelle de la Foi<br />
+              <span className="text-amber-400">Assemblée de Mpasa</span>
             </h1>
-            <p className="text-gray-200 text-lg leading-relaxed mb-8 max-w-md">
-              Citadelle de la Foi — enracinée dans la Parole, unie dans l'amour, engagée pour la transformation de Mpasa Mikonga.
+            <p className="text-amber-200/90 text-sm md:text-base font-semibold uppercase tracking-wider mb-4">
+              Centre d'Évangélisation et d'Enseignements Bibliques Appliqués
+            </p>
+            <p className="text-gray-200 text-sm md:text-base leading-relaxed mb-7 max-w-lg">
+              Une église bâtie sur <strong className="text-amber-300">4 piliers</strong> : Peuple d'Autel, d'Alliance, de Célébration et de Mission. Notre vision : conquérir la nation à travers <strong className="text-amber-300">MGRN</strong> — Mission de Guérison et Restauration des Nations.
             </p>
             <div className="flex flex-wrap gap-4">
               <button onClick={() => setPage("horaires")} className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold px-7 py-3.5 rounded-full transition-all shadow-xl hover:-translate-y-0.5">
@@ -223,8 +229,13 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
       </section>
 
       <section className="bg-amber-700 text-white py-10 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-3 gap-8 text-center">
-          {[{ n: "25+", label: "Années de ministère" }, { n: "1 500+", label: "Membres & familles" }, { n: "6", label: "Ministères actifs" }].map((s) => (
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { n: "40", label: "Ans au niveau national" },
+            { n: "9", label: "Ans à Mpasa" },
+            { n: "4", label: "Piliers fondateurs" },
+            { n: "4", label: "Structures de fonctionnement" },
+          ].map((s) => (
             <div key={s.label}>
               <div className="font-['Playfair_Display'] text-4xl font-bold text-amber-200 mb-1">{s.n}</div>
               <div className="text-amber-100 text-xs uppercase tracking-wide">{s.label}</div>
@@ -245,7 +256,7 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
               { icon: Calendar, page: "evenements" as Page, title: "Événements", desc: "Découvrez nos prochains rendez-vous : conventions, camps, baptêmes et célébrations." },
               { icon: ImageIcon, page: "galerie" as Page, title: "Galerie Photos", desc: "Revivez en images les grands moments de la Citadelle de la Foi." },
               { icon: Mic2, page: "sermons" as Page, title: "Sermons", desc: "Écoutez et revisionnez les dernières prédications de nos pasteurs et anciens." },
-              { icon: Users, page: "ministeres" as Page, title: "Nos Ministères", desc: "Trouvez votre place et servez Dieu au sein de l'un de nos 6 ministères." },
+              { icon: Users, page: "ministeres" as Page, title: "Nos Structures", desc: "Mamans Deborah, Papas Salomon, Jeunesse Timothée et les Amis de Jésus (ECODIM)." },
               { icon: HandHeart, page: "rejoindre" as Page, title: "Nous Rejoindre", desc: "Faites partie de la famille CBA-MPASA — Citadelle de la Foi." },
             ].map((c) => (
               <button
@@ -299,9 +310,12 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <img src="/images/cba-worship.png" alt="Culte" className="rounded-2xl shadow-2xl w-full object-cover h-[420px]" />
-            <div className="absolute -bottom-5 -right-5 w-36 h-36 bg-amber-700 rounded-2xl flex flex-col items-center justify-center text-white shadow-xl">
-              <div className="font-['Playfair_Display'] text-3xl font-bold">25</div>
-              <div className="text-xs uppercase tracking-wide text-amber-200">Ans de Foi</div>
+            <div className="absolute -bottom-5 -right-5 w-40 h-40 bg-amber-700 rounded-2xl flex flex-col items-center justify-center text-white shadow-xl text-center px-2">
+              <div className="font-['Playfair_Display'] text-4xl font-bold leading-none">40</div>
+              <div className="text-[10px] uppercase tracking-wide text-amber-200 mt-1">Ans de ministère</div>
+              <div className="w-8 h-px bg-amber-300/50 my-1.5" />
+              <div className="font-['Playfair_Display'] text-2xl font-bold leading-none">9</div>
+              <div className="text-[10px] uppercase tracking-wide text-amber-200 mt-1">Ans à Mpasa</div>
             </div>
           </div>
           <div>
@@ -310,7 +324,7 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
               Une Église bâtie sur la<br /><span className="text-amber-700">Roche Éternelle</span>
             </h2>
             <p className="text-gray-600 text-base leading-relaxed mb-4">
-              Fondé à <strong>Mpasa Mikonga</strong>, le <strong>Centre d'Enseignement Biblique Appliqué (CBA-MPASA)</strong> — surnommé <strong className="text-amber-700">Citadelle de la Foi</strong> — est une église vivante, enracinée dans la Parole de Dieu et animée par l'Esprit Saint.
+              <strong>CBA — Centre d'Évangélisation et d'Enseignements Bibliques Appliqués, Assemblée de Mpasa</strong> — surnommée <strong className="text-amber-700">Citadelle de la Foi</strong> — est une église vivante, enracinée dans la Parole de Dieu et animée par l'Esprit Saint depuis 40 ans au niveau national, et 9 ans à Mpasa.
             </p>
             <p className="text-gray-600 leading-relaxed mb-4">
               Notre nom dit tout : nous ne nous contentons pas d'enseigner la Bible, nous la <em>appliquons</em>. Chaque enseignement, chaque sermon, chaque réunion est conçu pour transformer concrètement la vie des croyants et de leur communauté.
@@ -322,23 +336,30 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
+      {/* 4 Piliers */}
       <section className="py-20 px-6 bg-amber-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Nos Fondements</div>
-            <h2 className="font-['Playfair_Display'] text-4xl font-bold text-gray-900">Ce en quoi nous croyons</h2>
+            <h2 className="font-['Playfair_Display'] text-4xl font-bold text-gray-900 mb-3">Une église bâtie sur 4 piliers</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+              Ces quatre piliers façonnent notre identité, notre adoration et notre mission au quotidien.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { ref: "2 Tim. 3:16-17", title: "La Bible, Parole de Dieu", desc: "Nous croyons que toute l'Écriture est inspirée de Dieu et utile pour enseigner, reprendre, redresser et instruire dans la justice." },
-              { ref: "Jean 3:3", title: "La Nouvelle Naissance", desc: "Nous prêchons la nécessité d'une transformation intérieure par le Saint-Esprit pour entrer dans le Royaume de Dieu." },
-              { ref: "1 Cor. 12:13", title: "L'Église Corps de Christ", desc: "Nous célébrons l'unité du Corps de Christ, fait de croyants de tout horizon, liés par un même Esprit et une même foi." },
-              { ref: "Matt. 28:19-20", title: "La Grande Commission", desc: "Nous sommes mandatés pour faire de toutes les nations des disciples, baptiser et enseigner à observer tout ce que Christ a commandé." },
-            ].map((v) => (
-              <div key={v.title} className="bg-white rounded-2xl p-7 border border-amber-100 shadow-sm">
-                <div className="text-amber-600 text-xs font-semibold mb-2 uppercase tracking-wide">{v.ref}</div>
-                <h3 className="font-['Playfair_Display'] text-xl font-bold text-gray-900 mb-3">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+              { num: "I",   ref: "Gen. 12:7",     title: "Peuple d'Autel",       desc: "Une église qui bâtit l'autel familial et collectif, qui adore Dieu en esprit et en vérité, et qui intercède sans cesse pour son entourage." },
+              { num: "II",  ref: "Jér. 31:33",    title: "Peuple d'Alliance",    desc: "Un peuple lié à Dieu par une alliance éternelle scellée dans le sang de Christ, et lié les uns aux autres dans l'amour fraternel." },
+              { num: "III", ref: "Ps. 95:1-2",    title: "Peuple de Célébration", desc: "Une assemblée qui célèbre la bonté, la fidélité et la majesté de Dieu à travers la louange, l'adoration et la joie communautaire." },
+              { num: "IV",  ref: "Matt. 28:19-20", title: "Peuple de Mission",    desc: "Une église envoyée pour faire des disciples, évangéliser la nation et restaurer les âmes par la puissance de l'Évangile." },
+            ].map((p) => (
+              <div key={p.title} className="bg-white rounded-2xl p-7 border border-amber-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-amber-700 text-white rounded-xl flex items-center justify-center mb-4 font-['Playfair_Display'] font-bold">
+                  {p.num}
+                </div>
+                <div className="text-amber-600 text-xs font-semibold mb-2 uppercase tracking-wide">{p.ref}</div>
+                <h3 className="font-['Playfair_Display'] text-xl font-bold text-gray-900 mb-3">{p.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -352,8 +373,11 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
               <BookOpen className="text-amber-400" size={22} />
             </div>
             <h3 className="font-['Playfair_Display'] text-2xl font-bold mb-4 text-white">Notre Vision</h3>
-            <p className="text-gray-300 leading-relaxed">
-              Voir Mpasa Mikonga et toute la République Démocratique du Congo transformés par la puissance de l'Évangile de Jésus-Christ, un foyer à la fois.
+            <p className="text-gray-300 leading-relaxed mb-3">
+              <strong className="text-amber-300">Conquête de la Nation à travers MGRN</strong> — Mission de Guérison et Restauration des Nations.
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Voir la République Démocratique du Congo, et au-delà, transformée par la puissance de l'Évangile : des familles guéries, des cœurs restaurés, des communautés debout.
             </p>
           </div>
           <div>
@@ -362,7 +386,7 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
             </div>
             <h3 className="font-['Playfair_Display'] text-2xl font-bold mb-4 text-white">Notre Mission</h3>
             <p className="text-gray-300 leading-relaxed">
-              Enseigner, appliquer et vivre la Parole de Dieu dans toutes les sphères de la vie — famille, société, travail — afin que chaque croyant soit un agent de changement dans son milieu.
+              Enseigner, appliquer et vivre la Parole de Dieu dans toutes les sphères de la vie — famille, société, travail — afin que chaque croyant devienne un agent de guérison et de restauration dans son milieu.
             </p>
           </div>
         </div>
@@ -378,25 +402,55 @@ function PageAPropos({ setPage }: { setPage: (p: Page) => void }) {
   );
 }
 
-/* ─── PAGE: Ministères ─────────────────────────────────────── */
-const MINISTRIES = [
-  { icon: Users, title: "Famille & Couples", ref: "Éph. 5:22-33", desc: "Accompagner les familles dans leur croissance spirituelle et le renforcement du foyer chrétien par l'enseignement et le conseil pastoral." },
-  { icon: Book, title: "École du Dimanche", ref: "Prov. 22:6", desc: "Enseignements bibliques adaptés pour les enfants et les jeunes, fondés sur la Parole de Dieu et dispensés par des enseignants formés." },
-  { icon: Music, title: "Louange & Adoration", ref: "Ps. 150:6", desc: "Un ministère musical dédié à glorifier Dieu à travers le chant, les instruments et la danse, et à conduire l'assemblée à l'adoration." },
-  { icon: Heart, title: "Action Sociale", ref: "Matt. 25:35", desc: "Servir la communauté de Mpasa Mikonga par des actions concrètes d'amour : aide alimentaire, soutien aux familles, visites aux malades." },
-  { icon: Users, title: "Jeunesse CBA", ref: "1 Tim. 4:12", desc: "Équiper la jeune génération pour vivre pleinement leur foi au quotidien dans la société congolaise — formation, retraites, évangélisation." },
-  { icon: BookOpen, title: "Cellules de Maison", ref: "Actes 2:46", desc: "Des groupes de prière et d'étude biblique dans les quartiers pour approfondir la communauté et faire croître la foi hors des murs de l'église." },
+/* ─── PAGE: Ministères / Structures ─────────────────────────────────────── */
+const STRUCTURES = [
+  {
+    icon: HandHeart,
+    name: "Maman « Deborah »",
+    ref: "Juges 4-5",
+    color: "from-rose-700 to-amber-700",
+    role: "Intercession",
+    desc: "Les mères intercédant pour nos familles, notre église et notre nation. Une armée d'épouses, de mères et de filles consacrées à la prière fervente et à la guerre spirituelle.",
+    horaire: "Lundi : 9h – 16h",
+  },
+  {
+    icon: BookOpen,
+    name: "Papas « Salomon »",
+    ref: "1 Rois 3:9",
+    color: "from-amber-800 to-amber-600",
+    role: "Sagesse & Stabilité",
+    desc: "Les pères, gardiens de l'autel dans nos foyers. Garants de la sagesse, de la stabilité et de la direction spirituelle de nos familles et de l'église.",
+    horaire: "Réunions trimestrielles",
+  },
+  {
+    icon: Sparkles,
+    name: "Jeunesse « Timothée »",
+    ref: "1 Tim. 4:12",
+    color: "from-orange-700 to-amber-500",
+    role: "Pionniers & Bâtisseurs",
+    desc: "Les jeunes pionniers et bâtisseurs des autels de demain. Une génération formée pour porter la vision MGRN avec audace, vision et zèle pour Christ.",
+    horaire: "Voir programme jeunesse",
+  },
+  {
+    icon: Heart,
+    name: "Les Amis de Jésus (ECODIM)",
+    ref: "Marc 10:14",
+    color: "from-amber-600 to-yellow-500",
+    role: "Fondation & Avenir",
+    desc: "L'École du Dimanche — fondation et avenir de l'église de demain. Nous formons les enfants à connaître Jésus, à aimer la Parole et à grandir comme disciples dès le plus jeune âge.",
+    horaire: "Dimanche pendant le culte",
+  },
 ];
 
 function PageMinisteres({ setPage }: { setPage: (p: Page) => void }) {
   return (
     <div>
       <div className="relative h-64 overflow-hidden">
-        <img src="/images/cba-community.png" alt="Ministères" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/cba-community.png" alt="Structures" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-amber-900/80" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
           <div className="text-amber-300 text-xs font-semibold uppercase tracking-widest mb-2">✝ Servir Ensemble</div>
-          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Nos Ministères</h1>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Nos Structures de Fonctionnement</h1>
         </div>
       </div>
 
@@ -404,21 +458,35 @@ function PageMinisteres({ setPage }: { setPage: (p: Page) => void }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Trouvez votre place</div>
-            <h2 className="font-['Playfair_Display'] text-4xl font-bold text-gray-900 mb-3">Servir pour la gloire de Dieu</h2>
-            <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">Chacun est doué par Dieu. À CBA-MPASA, vous trouverez un espace pour exercer vos dons et grandir dans votre appel.</p>
+            <h2 className="font-['Playfair_Display'] text-4xl font-bold text-gray-900 mb-3">4 structures, une seule famille</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto text-sm leading-relaxed">
+              L'église est organisée autour de quatre structures complémentaires — chacune avec un appel spécifique pour servir Dieu et bâtir la maison.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MINISTRIES.map((m) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+            {STRUCTURES.map((s, i) => (
               <div
-                key={m.title}
-                className="group bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-amber-200 transition-all duration-300"
+                key={s.name}
+                className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-amber-50 group-hover:bg-amber-700 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300">
-                  <m.icon className="text-amber-700 group-hover:text-white transition-colors duration-300" size={22} />
+                <div className={`bg-gradient-to-r ${s.color} px-7 py-5 flex items-center gap-4 text-white`}>
+                  <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shrink-0">
+                    <s.icon size={26} />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/80">Structure {i + 1} · {s.role}</div>
+                    <div className="font-['Playfair_Display'] text-xl font-bold leading-tight">{s.name}</div>
+                  </div>
                 </div>
-                <div className="text-amber-600 text-xs font-semibold mb-2 uppercase tracking-wide">{m.ref}</div>
-                <h3 className="font-['Playfair_Display'] text-xl font-bold text-gray-900 mb-3">{m.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{m.desc}</p>
+                <div className="p-7">
+                  <div className="text-amber-600 text-xs font-semibold mb-2 uppercase tracking-wide">{s.ref}</div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{s.desc}</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 pt-4 border-t border-gray-100">
+                    <Clock size={13} className="text-amber-600" />
+                    <span className="font-semibold">{s.horaire}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -426,8 +494,10 @@ function PageMinisteres({ setPage }: { setPage: (p: Page) => void }) {
       </section>
 
       <div className="py-14 px-6 bg-amber-700 text-white text-center">
-        <h3 className="font-['Playfair_Display'] text-3xl font-bold mb-3">Intégrer un ministère</h3>
-        <p className="text-amber-100 mb-6 max-w-lg mx-auto text-sm">Vous souhaitez vous investir dans l'un de nos ministères ? Contactez-nous et nous vous guiderons dans votre engagement.</p>
+        <h3 className="font-['Playfair_Display'] text-3xl font-bold mb-3">Intégrer une structure</h3>
+        <p className="text-amber-100 mb-6 max-w-lg mx-auto text-sm">
+          Vous souhaitez rejoindre l'une de nos quatre structures ? Contactez-nous et nous vous guiderons dans votre engagement.
+        </p>
         <button onClick={() => setPage("contact")} className="inline-flex items-center gap-2 bg-white text-amber-800 hover:bg-amber-50 font-semibold px-7 py-3 rounded-full transition-colors">
           Nous Contacter <ArrowRight size={14} />
         </button>
@@ -438,10 +508,11 @@ function PageMinisteres({ setPage }: { setPage: (p: Page) => void }) {
 
 /* ─── PAGE: Horaires ─────────────────────────────────────── */
 const SCHEDULE = [
-  { day: "Dimanche", color: "bg-amber-700", services: ["Culte du matin — 9h00", "École du Dimanche — 11h00", "Culte du soir — 17h00"] },
-  { day: "Mercredi", color: "bg-blue-700", services: ["Réunion de prière — 18h30"] },
-  { day: "Vendredi", color: "bg-purple-700", services: ["Nuit de Prière — 21h00 (1er vendredi du mois)"] },
-  { day: "Samedi", color: "bg-green-700", services: ["Jeunesse CBA — 15h00", "Cellules de maison — Voir programme"] },
+  { day: "Dimanche", color: "bg-amber-700", services: ["Culte d'adoration et de célébration — 9h à 12h"] },
+  { day: "Lundi",    color: "bg-rose-700",  services: ["Réunion des Mamans « Deborah » — 9h à 16h"] },
+  { day: "Mardi",    color: "bg-amber-800", services: ["Culte d'enseignements — 17h à 19h"] },
+  { day: "Mercredi", color: "bg-blue-700",  services: ["Prière d'autel pour nos familles, l'église et le pays — 9h à 12h"] },
+  { day: "Jeudi",    color: "bg-amber-800", services: ["Culte d'enseignements — 17h à 19h"] },
 ];
 
 function PageHoraires() {
@@ -483,20 +554,51 @@ function PageHoraires() {
             ))}
           </div>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-7">
+              <div className="flex items-center gap-2 text-amber-700 text-xs font-bold uppercase tracking-widest mb-3">
+                <MapPinned size={14} /> Adresse de Mpasa
+              </div>
+              <h3 className="font-['Playfair_Display'] text-xl font-bold text-gray-900 mb-3">Citadelle de la Foi — Mpasa</h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Avenue Montali n° 58, Quartier Tala Ngai<br />
+                Mpasa Mikonga, Commune de N'sele<br />
+                Kinshasa, République Démocratique du Congo
+              </p>
+              <p className="text-xs text-amber-700 font-semibold mt-3 italic">
+                Réf. : Arrêt CCT, en face de Winners
+              </p>
+            </div>
+
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-7">
+              <div className="flex items-center gap-2 text-gray-700 text-xs font-bold uppercase tracking-widest mb-3">
+                <MapPin size={14} /> Adresse Nationale
+              </div>
+              <h3 className="font-['Playfair_Display'] text-xl font-bold text-gray-900 mb-3">Siège National CBA</h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                2ème rue Limete, De Bonhomme n° 2<br />
+                Commune de Limete<br />
+                Kinshasa, République Démocratique du Congo
+              </p>
+              <p className="text-xs text-gray-500 mt-3 italic">
+                40 ans de ministère au service de la nation
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-white border border-gray-100 rounded-2xl p-7 flex flex-col md:flex-row gap-6 items-start">
             <div className="flex-1">
-              <h3 className="font-['Playfair_Display'] text-2xl font-bold text-gray-900 mb-3">Comment nous trouver ?</h3>
-              <div className="space-y-3 text-sm text-gray-600">
-                <div className="flex items-start gap-3"><MapPin size={16} className="text-amber-700 mt-0.5 shrink-0" /><span><strong>Mpasa Mikonga</strong>, Commune de N'sele<br />Kinshasa, République Démocratique du Congo</span></div>
-                <div className="flex items-center gap-3"><Phone size={16} className="text-amber-700 shrink-0" /><span>+243 81 234 5678</span></div>
-                <div className="flex items-center gap-3"><Mail size={16} className="text-amber-700 shrink-0" /><span>contact@cbampasa.cd</span></div>
+              <h3 className="font-['Playfair_Display'] text-lg font-bold text-gray-900 mb-3">Contact</h3>
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex items-center gap-3"><Phone size={15} className="text-amber-700 shrink-0" /><span>+243 81 234 5678</span></div>
+                <div className="flex items-center gap-3"><Mail size={15} className="text-amber-700 shrink-0" /><span>contact@cbampasa.cd</span></div>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="font-['Playfair_Display'] text-2xl font-bold text-gray-900 mb-3">Bureau Pastoral</h3>
+              <h3 className="font-['Playfair_Display'] text-lg font-bold text-gray-900 mb-3">Bureau Pastoral</h3>
               <div className="space-y-2 text-sm text-gray-600">
-                <div className="flex items-center gap-3"><Clock size={16} className="text-amber-700 shrink-0" /><span>Lundi – Vendredi : 9h00 – 17h00</span></div>
-                <div className="flex items-center gap-3"><Clock size={16} className="text-amber-700 shrink-0" /><span>Samedi : 10h00 – 14h00</span></div>
+                <div className="flex items-center gap-3"><Clock size={15} className="text-amber-700 shrink-0" /><span>Mardi & Jeudi : 17h – 19h (sur place)</span></div>
+                <div className="flex items-center gap-3"><Clock size={15} className="text-amber-700 shrink-0" /><span>Sur rendez-vous le reste de la semaine</span></div>
               </div>
             </div>
           </div>
@@ -619,9 +721,9 @@ function PageDirect({ setPage }: { setPage: (p: Page) => void }) {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
             {[
-              { icon: CalendarDays, title: "Dimanche 9h00", desc: "Culte du matin diffusé en direct" },
-              { icon: CalendarDays, title: "Dimanche 17h00", desc: "Culte du soir diffusé en direct" },
-              { icon: Radio, title: "Mercredi 18h30", desc: "Réunion de prière en direct" },
+              { icon: CalendarDays, title: "Dimanche 9h – 12h", desc: "Culte d'adoration et de célébration en direct" },
+              { icon: Radio,        title: "Mercredi 9h – 12h", desc: "Prière d'autel pour nos familles, l'église et le pays" },
+              { icon: BookOpen,     title: "Mardi & Jeudi 17h – 19h", desc: "Cultes d'enseignements bibliques en direct" },
             ].map((s) => (
               <div key={s.title} className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center">
                 <s.icon className="text-amber-400 mx-auto mb-3" size={22} />
@@ -663,7 +765,7 @@ const GALLERY_CATEGORIES = [
   { id: "cultes", label: "Cultes & Adoration" },
   { id: "communaute", label: "Vie Communautaire" },
   { id: "evenements", label: "Événements" },
-  { id: "ministeres", label: "Ministères" },
+  { id: "ministeres", label: "Structures" },
 ] as const;
 
 type GalleryCat = typeof GALLERY_CATEGORIES[number]["id"];
@@ -935,10 +1037,11 @@ function PageContact() {
 
             <div className="space-y-6">
               {[
-                { icon: MapPin, label: "Adresse", value: "Mpasa Mikonga, Commune de N'sele\nKinshasa, République Démocratique du Congo" },
+                { icon: MapPinned, label: "Adresse — Mpasa", value: "Avenue Montali n° 58, Quartier Tala Ngai\nMpasa Mikonga, Commune de N'sele, Kinshasa\nRéf. : Arrêt CCT, en face de Winners" },
+                { icon: MapPin, label: "Siège National", value: "2ème rue Limete, De Bonhomme n° 2\nCommune de Limete, Kinshasa, R.D. Congo" },
                 { icon: Phone, label: "Téléphone", value: "+243 81 234 5678\n+243 99 876 5432" },
                 { icon: Mail, label: "Email", value: "contact@cbampasa.cd\ninfo@cbampasa.cd" },
-                { icon: Clock, label: "Bureau pastoral", value: "Lun – Ven : 9h00 – 17h00 | Sam : 10h00 – 14h00" },
+                { icon: Clock, label: "Bureau pastoral", value: "Mardi & Jeudi : 17h – 19h\nAutres jours : sur rendez-vous" },
               ].map((c) => (
                 <div key={c.label} className="flex items-start gap-4">
                   <div className="w-11 h-11 bg-amber-50 rounded-xl flex items-center justify-center shrink-0">
@@ -982,7 +1085,7 @@ function PageContact() {
                 <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Sujet</label>
                 <select className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition">
                   <option>Première visite</option>
-                  <option>Rejoindre un ministère</option>
+                  <option>Rejoindre une structure (Mamans Deborah, Papas Salomon, Jeunesse Timothée, ECODIM)</option>
                   <option>Demande de prière</option>
                   <option>Conseil pastoral</option>
                   <option>Renseignements généraux</option>
@@ -1082,10 +1185,10 @@ function PageRejoindre({ setPage }: { setPage: (p: Page) => void }) {
               </div>
               <h3 className="font-['Playfair_Display'] text-2xl font-bold text-gray-900 mb-3">Étape 3 — Intégrez la famille</h3>
               <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
-                Une fois membre, vous pourrez rejoindre un ministère, participer aux cellules de maison et vous engager pleinement dans la vie de la Citadelle de la Foi.
+                Une fois membre, vous pourrez rejoindre l'une de nos 4 structures (Mamans Deborah, Papas Salomon, Jeunesse Timothée, Amis de Jésus / ECODIM) et vous engager pleinement dans la vie de la Citadelle de la Foi.
               </p>
               <button onClick={() => setPage("ministeres")} className="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-semibold px-7 py-3 rounded-full transition-colors">
-                Voir les ministères <ArrowRight size={14} />
+                Voir les structures <ArrowRight size={14} />
               </button>
             </div>
           )}
@@ -1125,15 +1228,13 @@ function PageRejoindre({ setPage }: { setPage: (p: Page) => void }) {
                 <input type="text" placeholder="Ex : Mpasa Mikonga, Ndjili..." className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Ministère souhaité</label>
+                <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Structure souhaitée</label>
                 <select className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition">
-                  <option value="">— Aucun pour l'instant —</option>
-                  <option>Famille & Couples</option>
-                  <option>École du Dimanche</option>
-                  <option>Louange & Adoration</option>
-                  <option>Action Sociale</option>
-                  <option>Jeunesse CBA</option>
-                  <option>Cellules de Maison</option>
+                  <option value="">— Aucune pour l'instant —</option>
+                  <option>Mamans « Deborah » — Intercession</option>
+                  <option>Papas « Salomon » — Sagesse & Stabilité</option>
+                  <option>Jeunesse « Timothée » — Pionniers & Bâtisseurs</option>
+                  <option>Les Amis de Jésus (ECODIM) — Enfants</option>
                 </select>
               </div>
               <div>
