@@ -3,10 +3,11 @@ import {
   Menu, X, Phone, Mail, MapPin, Clock, ChevronDown, Play,
   Heart, Book, Users, Music, ArrowRight, Facebook, Youtube,
   Instagram, BookOpen, HandHeart, ChevronRight, Send, CalendarDays, Mic2,
-  Radio, Image as ImageIcon, Calendar, MapPinned, Sparkles,
+  Radio, Image as ImageIcon, Calendar, MapPinned, Sparkles, Lock,
 } from "lucide-react";
+import AdminApp from "./admin";
 
-type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "direct" | "galerie" | "evenements" | "contact" | "rejoindre";
+type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "direct" | "galerie" | "evenements" | "contact" | "rejoindre" | "admin";
 
 const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Accueil", page: "accueil" },
@@ -182,9 +183,17 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
-          © {new Date().getFullYear()} CBA-MPASA · Centre d'Évangélisation et d'Enseignements Bibliques Appliqués · Assemblée de Mpasa · Citadelle de la Foi
-          <br /><span className="text-amber-700/60">« La grâce et la paix vous soient données. » — Rom. 1:7</span>
+        <div className="border-t border-gray-800 pt-6 text-center text-xs text-gray-600 flex flex-col items-center gap-2">
+          <div>
+            © {new Date().getFullYear()} CBA-MPASA · Centre d'Évangélisation et d'Enseignements Bibliques Appliqués · Assemblée de Mpasa · Citadelle de la Foi
+          </div>
+          <span className="text-amber-700/60">« La grâce et la paix vous soient données. » — Rom. 1:7</span>
+          <button
+            onClick={() => setPage("admin")}
+            className="mt-2 inline-flex items-center gap-1.5 text-[10px] text-gray-600 hover:text-amber-400 transition"
+          >
+            <Lock size={10} /> Espace Administration
+          </button>
         </div>
       </footer>
     </div>
@@ -1261,6 +1270,10 @@ function PageRejoindre({ setPage }: { setPage: (p: Page) => void }) {
 export default function App() {
   const [page, setPage] = useState<Page>("accueil");
 
+  if (page === "admin") {
+    return <AdminApp onExit={() => setPage("accueil")} />;
+  }
+
   const content = (() => {
     switch (page) {
       case "accueil":    return <PageAccueil setPage={setPage} />;
@@ -1273,6 +1286,7 @@ export default function App() {
       case "evenements": return <PageEvenements setPage={setPage} />;
       case "contact":    return <PageContact />;
       case "rejoindre":  return <PageRejoindre setPage={setPage} />;
+      default:           return <PageAccueil setPage={setPage} />;
     }
   })();
 
