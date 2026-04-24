@@ -3,14 +3,18 @@ import {
   Menu, X, Phone, Mail, MapPin, Clock, ChevronDown, Play,
   Heart, Book, Users, Music, ArrowRight, Facebook, Youtube,
   Instagram, BookOpen, HandHeart, ChevronRight, Send, CalendarDays, Mic2,
+  Radio, Image as ImageIcon, Calendar, MapPinned, Sparkles,
 } from "lucide-react";
 
-type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "contact" | "rejoindre";
+type Page = "accueil" | "apropos" | "ministeres" | "horaires" | "sermons" | "direct" | "galerie" | "evenements" | "contact" | "rejoindre";
 
 const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Accueil", page: "accueil" },
   { label: "À Propos", page: "apropos" },
+  { label: "Direct", page: "direct" },
   { label: "Ministères", page: "ministeres" },
+  { label: "Événements", page: "evenements" },
+  { label: "Galerie", page: "galerie" },
   { label: "Horaires", page: "horaires" },
   { label: "Sermons", page: "sermons" },
   { label: "Contact", page: "contact" },
@@ -237,11 +241,11 @@ function PageAccueil({ setPage }: { setPage: (p: Page) => void }) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, page: "apropos" as Page, title: "Notre Histoire", desc: "Découvrez qui nous sommes, notre vision et nos valeurs fondamentales." },
-              { icon: Users, page: "ministeres" as Page, title: "Nos Ministères", desc: "Trouvez votre place et servez Dieu au sein de l'un de nos 6 ministères." },
-              { icon: CalendarDays, page: "horaires" as Page, title: "Horaires", desc: "Consultez les horaires de nos cultes, réunions et activités hebdomadaires." },
+              { icon: Radio, page: "direct" as Page, title: "Culte en Direct", desc: "Suivez nos cultes en direct depuis chez vous, où que vous soyez dans le monde." },
+              { icon: Calendar, page: "evenements" as Page, title: "Événements", desc: "Découvrez nos prochains rendez-vous : conventions, camps, baptêmes et célébrations." },
+              { icon: ImageIcon, page: "galerie" as Page, title: "Galerie Photos", desc: "Revivez en images les grands moments de la Citadelle de la Foi." },
               { icon: Mic2, page: "sermons" as Page, title: "Sermons", desc: "Écoutez et revisionnez les dernières prédications de nos pasteurs et anciens." },
-              { icon: Mail, page: "contact" as Page, title: "Nous Contacter", desc: "Posez vos questions, demandez une prière ou planifiez une visite." },
+              { icon: Users, page: "ministeres" as Page, title: "Nos Ministères", desc: "Trouvez votre place et servez Dieu au sein de l'un de nos 6 ministères." },
               { icon: HandHeart, page: "rejoindre" as Page, title: "Nous Rejoindre", desc: "Faites partie de la famille CBA-MPASA — Citadelle de la Foi." },
             ].map((c) => (
               <button
@@ -569,6 +573,344 @@ function PageSermons() {
   );
 }
 
+/* ─── PAGE: Direct (Live) ─────────────────────────────────────── */
+// Remplacez YOUTUBE_CHANNEL_ID par l'ID réel de votre chaîne YouTube
+const YOUTUBE_CHANNEL_ID = "UCxxxxxxxxxxxxxxxxxxxxxx";
+const LIVE_EMBED_URL = `https://www.youtube.com/embed/live_stream?channel=${YOUTUBE_CHANNEL_ID}&autoplay=0`;
+
+function PageDirect({ setPage }: { setPage: (p: Page) => void }) {
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden">
+        <img src="/images/cba-worship.png" alt="Direct" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/90 via-amber-900/80 to-amber-800/70" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="flex items-center gap-2 text-red-300 text-xs font-semibold uppercase tracking-widest mb-2">
+            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+            <Radio size={13} /> Diffusion en direct
+          </div>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Culte en Direct</h1>
+        </div>
+      </div>
+
+      <section className="py-16 px-6 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/40 text-red-300 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-4">
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" /> En ligne
+            </div>
+            <h2 className="font-['Playfair_Display'] text-4xl font-bold text-white mb-3">Suivez le culte depuis chez vous</h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
+              Que vous soyez à Kinshasa, à Mpasa, ou ailleurs dans le monde — restez connectés à la Citadelle de la Foi.
+            </p>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden border-2 border-amber-700/30 shadow-2xl bg-black">
+            <div className="aspect-video w-full">
+              <iframe
+                src={LIVE_EMBED_URL}
+                title="CBA-MPASA — Diffusion en direct"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+            {[
+              { icon: CalendarDays, title: "Dimanche 9h00", desc: "Culte du matin diffusé en direct" },
+              { icon: CalendarDays, title: "Dimanche 17h00", desc: "Culte du soir diffusé en direct" },
+              { icon: Radio, title: "Mercredi 18h30", desc: "Réunion de prière en direct" },
+            ].map((s) => (
+              <div key={s.title} className="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center">
+                <s.icon className="text-amber-400 mx-auto mb-3" size={22} />
+                <div className="text-white font-bold mb-1">{s.title}</div>
+                <div className="text-gray-400 text-sm">{s.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 bg-amber-900/30 border border-amber-700/40 rounded-2xl p-7 text-center">
+            <Youtube className="text-red-500 mx-auto mb-3" size={32} />
+            <h3 className="text-white font-['Playfair_Display'] text-xl font-bold mb-2">Abonnez-vous à notre chaîne</h3>
+            <p className="text-gray-300 text-sm mb-5 max-w-md mx-auto">
+              Recevez une notification dès qu'un culte démarre et retrouvez les rediffusions à tout moment.
+            </p>
+            <a
+              href={`https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}?sub_confirmation=1`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3 rounded-full transition-colors"
+            >
+              <Youtube size={16} /> S'abonner sur YouTube
+            </a>
+          </div>
+
+          <div className="mt-8 text-center">
+            <button onClick={() => setPage("sermons")} className="text-amber-400 hover:text-amber-300 text-sm font-semibold inline-flex items-center gap-1">
+              Voir les sermons précédents <ChevronRight size={14} />
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ─── PAGE: Galerie ─────────────────────────────────────── */
+const GALLERY_CATEGORIES = [
+  { id: "cultes", label: "Cultes & Adoration" },
+  { id: "communaute", label: "Vie Communautaire" },
+  { id: "evenements", label: "Événements" },
+  { id: "ministeres", label: "Ministères" },
+] as const;
+
+type GalleryCat = typeof GALLERY_CATEGORIES[number]["id"];
+
+const GALLERY: { src: string; alt: string; cat: GalleryCat; title: string }[] = [
+  { src: "/images/cba-worship.png", alt: "Culte d'adoration", cat: "cultes", title: "Culte du dimanche matin" },
+  { src: "/images/cba-hero.png",    alt: "Assemblée",         cat: "cultes", title: "Assemblée en louange" },
+  { src: "/images/cba-bible.png",   alt: "Étude biblique",    cat: "cultes", title: "Lecture de la Parole" },
+  { src: "/images/cba-community.png", alt: "Communauté",       cat: "communaute", title: "Vie de communauté" },
+  { src: "/images/cba-worship.png", alt: "Louange",            cat: "communaute", title: "Moments de louange" },
+  { src: "/images/cba-community.png", alt: "Famille CBA",     cat: "evenements", title: "Grand rassemblement annuel" },
+  { src: "/images/cba-hero.png",    alt: "Convention",        cat: "evenements", title: "Convention de Pâques" },
+  { src: "/images/cba-worship.png", alt: "École du Dimanche", cat: "ministeres", title: "École du Dimanche" },
+  { src: "/images/cba-community.png", alt: "Action sociale",  cat: "ministeres", title: "Ministère d'action sociale" },
+  { src: "/images/cba-bible.png",   alt: "Cellule",           cat: "ministeres", title: "Cellule de maison" },
+  { src: "/images/cba-hero.png",    alt: "Jeunesse CBA",      cat: "ministeres", title: "Jeunesse CBA" },
+  { src: "/images/cba-worship.png", alt: "Chorale",           cat: "ministeres", title: "Chorale de l'église" },
+];
+
+function PageGalerie() {
+  const [filter, setFilter] = useState<GalleryCat | "all">("all");
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const filtered = filter === "all" ? GALLERY : GALLERY.filter((g) => g.cat === filter);
+
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden">
+        <img src="/images/cba-community.png" alt="Galerie" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-amber-900/80" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="text-amber-300 text-xs font-semibold uppercase tracking-widest mb-2 flex items-center gap-2">
+            <ImageIcon size={13} /> ✝ Souvenirs en Images
+          </div>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Galerie Photos</h1>
+        </div>
+      </div>
+
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">L'église en images</div>
+            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-gray-900 mb-3">Moments partagés ensemble</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+              Cultes, événements, baptêmes, action sociale — découvrez la vie quotidienne de la Citadelle de la Foi.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <button
+              onClick={() => setFilter("all")}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${filter === "all" ? "bg-amber-700 text-white" : "bg-amber-50 text-amber-800 hover:bg-amber-100"}`}
+            >
+              Tout voir
+            </button>
+            {GALLERY_CATEGORIES.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setFilter(c.id)}
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${filter === c.id ? "bg-amber-700 text-white" : "bg-amber-50 text-amber-800 hover:bg-amber-100"}`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filtered.map((img, i) => (
+              <button
+                key={`${img.src}-${i}`}
+                onClick={() => setLightbox(i)}
+                className="group relative aspect-square overflow-hidden rounded-xl border border-gray-100 hover:border-amber-300 transition-all"
+              >
+                <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="text-white text-sm font-semibold">{img.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {lightbox !== null && filtered[lightbox] && (
+            <div
+              onClick={() => setLightbox(null)}
+              className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4 cursor-pointer"
+            >
+              <button className="absolute top-5 right-5 text-white hover:text-amber-300 z-10" onClick={() => setLightbox(null)}>
+                <X size={28} />
+              </button>
+              <button
+                className="absolute left-4 md:left-10 text-white hover:text-amber-300"
+                onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + filtered.length) % filtered.length); }}
+              >
+                <ChevronRight size={32} className="rotate-180" />
+              </button>
+              <button
+                className="absolute right-4 md:right-10 text-white hover:text-amber-300"
+                onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % filtered.length); }}
+              >
+                <ChevronRight size={32} />
+              </button>
+              <div className="max-w-5xl max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                <img src={filtered[lightbox].src} alt={filtered[lightbox].alt} className="max-h-[78vh] w-auto rounded-xl shadow-2xl" />
+                <div className="mt-4 text-white text-center">
+                  <div className="font-['Playfair_Display'] text-xl font-bold">{filtered[lightbox].title}</div>
+                  <div className="text-gray-400 text-sm mt-1">{lightbox + 1} / {filtered.length}</div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ─── PAGE: Événements ─────────────────────────────────────── */
+const TODAY = new Date();
+TODAY.setHours(0, 0, 0, 0);
+
+const EVENTS: { date: string; title: string; desc: string; location: string; image: string; tag: string }[] = [
+  { date: "2026-05-10", title: "Convention Annuelle de Pentecôte", desc: "Trois jours d'enseignements, de prière et d'adoration sous le thème : « Renouvelés par l'Esprit ». Invités spéciaux et chorales unies.", location: "Citadelle de la Foi, Mpasa Mikonga", image: "/images/cba-worship.png", tag: "Convention" },
+  { date: "2026-06-21", title: "Camp Jeunesse CBA 2026", desc: "Une semaine pour les jeunes de 15 à 30 ans : enseignements, sports, retraite spirituelle et évangélisation à N'sele.", location: "Site de retraite, N'sele", image: "/images/cba-community.png", tag: "Jeunesse" },
+  { date: "2026-07-05", title: "Baptêmes par immersion", desc: "Cérémonie publique de baptême pour les nouveaux disciples ayant suivi le parcours d'enseignement.", location: "Fleuve Congo, Maluku", image: "/images/cba-bible.png", tag: "Baptême" },
+  { date: "2026-08-15", title: "Journée de l'Action Sociale", desc: "Distribution alimentaire, soins gratuits et accompagnement des familles en difficulté du quartier Mpasa.", location: "Mpasa Mikonga", image: "/images/cba-community.png", tag: "Action Sociale" },
+  { date: "2026-12-24", title: "Veillée de Noël", desc: "Veillée musicale, méditation et célébration de la naissance de notre Sauveur Jésus-Christ. Familles bienvenues.", location: "Citadelle de la Foi", image: "/images/cba-hero.png", tag: "Célébration" },
+
+  { date: "2026-04-05", title: "Convention de Pâques 2026", desc: "Célébration de la résurrection avec un message puissant du Pasteur Principal et une chorale spéciale.", location: "Citadelle de la Foi", image: "/images/cba-worship.png", tag: "Convention" },
+  { date: "2026-03-08", title: "Journée de la Femme Chrétienne", desc: "Une journée d'enseignements, de prière et de communion pour toutes les femmes de l'église.", location: "Citadelle de la Foi", image: "/images/cba-community.png", tag: "Femmes" },
+  { date: "2026-01-01", title: "Culte du Nouvel An", desc: "Veillée de prière et culte de consécration pour entrer dans la nouvelle année avec Dieu.", location: "Citadelle de la Foi", image: "/images/cba-bible.png", tag: "Célébration" },
+  { date: "2025-12-31", title: "Veillée de fin d'année 2025", desc: "Action de grâce, prière et louange pour clôturer l'année dans la présence de Dieu.", location: "Citadelle de la Foi", image: "/images/cba-hero.png", tag: "Célébration" },
+  { date: "2025-10-12", title: "Semaine d'Évangélisation", desc: "Une semaine d'évangélisation de masse à Mpasa Mikonga avec tentes, chorales et enseignements quotidiens.", location: "Place centrale, Mpasa", image: "/images/cba-community.png", tag: "Évangélisation" },
+];
+
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function PageEvenements({ setPage }: { setPage: (p: Page) => void }) {
+  const [tab, setTab] = useState<"futurs" | "passes">("futurs");
+
+  const futurs = EVENTS
+    .filter((e) => new Date(e.date) >= TODAY)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const passes = EVENTS
+    .filter((e) => new Date(e.date) < TODAY)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const list = tab === "futurs" ? futurs : passes;
+
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden">
+        <img src="/images/cba-hero.png" alt="Événements" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-amber-900/82" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="text-amber-300 text-xs font-semibold uppercase tracking-widest mb-2 flex items-center gap-2">
+            <Calendar size={13} /> ✝ Vie de l'Église
+          </div>
+          <h1 className="font-['Playfair_Display'] text-4xl font-bold text-white">Événements</h1>
+        </div>
+      </div>
+
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-amber-700 text-xs font-semibold uppercase tracking-widest mb-2">Ne manquez rien</div>
+            <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-gray-900 mb-3">Conventions, camps et célébrations</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+              Découvrez nos prochains rendez-vous spirituels et revivez les grands moments passés de la Citadelle de la Foi.
+            </p>
+          </div>
+
+          <div className="flex justify-center gap-2 mb-10">
+            <button
+              onClick={() => setTab("futurs")}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${tab === "futurs" ? "bg-amber-700 text-white shadow-md" : "bg-white text-amber-800 border border-amber-200 hover:bg-amber-50"}`}
+            >
+              <Sparkles size={14} className="inline mr-1.5" /> À venir ({futurs.length})
+            </button>
+            <button
+              onClick={() => setTab("passes")}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${tab === "passes" ? "bg-amber-700 text-white shadow-md" : "bg-white text-amber-800 border border-amber-200 hover:bg-amber-50"}`}
+            >
+              <Clock size={14} className="inline mr-1.5" /> Passés ({passes.length})
+            </button>
+          </div>
+
+          {list.length === 0 ? (
+            <div className="text-center text-gray-500 py-14">Aucun événement {tab === "futurs" ? "à venir" : "passé"} pour le moment.</div>
+          ) : (
+            <div className="space-y-6">
+              {list.map((e) => {
+                const d = new Date(e.date);
+                const day = d.getDate();
+                const month = d.toLocaleDateString("fr-FR", { month: "short" }).toUpperCase().replace(".", "");
+                const year = d.getFullYear();
+                const isPast = tab === "passes";
+                return (
+                  <div
+                    key={`${e.date}-${e.title}`}
+                    className={`bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow grid grid-cols-1 md:grid-cols-[140px_1fr] ${isPast ? "opacity-90" : ""}`}
+                  >
+                    <div className={`${isPast ? "bg-gray-700" : "bg-amber-700"} text-white flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 py-4 md:py-6`}>
+                      <div className="font-['Playfair_Display'] text-3xl md:text-5xl font-bold leading-none">{day}</div>
+                      <div className="text-xs uppercase tracking-widest opacity-90">{month}</div>
+                      <div className="text-xs opacity-70">{year}</div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px]">
+                      <div className="p-6 md:p-7">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${isPast ? "bg-gray-100 text-gray-600" : "bg-amber-100 text-amber-800"}`}>{e.tag}</span>
+                          {!isPast && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-green-100 text-green-700">À venir</span>
+                          )}
+                        </div>
+                        <h3 className="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-gray-900 mb-2">{e.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4">{e.desc}</p>
+                        <div className="flex flex-wrap gap-4 text-xs text-gray-500">
+                          <span className="flex items-center gap-1.5"><CalendarDays size={13} /> {formatDate(e.date)}</span>
+                          <span className="flex items-center gap-1.5"><MapPinned size={13} /> {e.location}</span>
+                        </div>
+                        {!isPast && (
+                          <button
+                            onClick={() => setPage("contact")}
+                            className="mt-5 inline-flex items-center gap-1.5 text-amber-700 hover:text-amber-900 text-sm font-semibold"
+                          >
+                            S'inscrire / Plus d'infos <ChevronRight size={14} />
+                          </button>
+                        )}
+                      </div>
+                      <div className="hidden lg:block relative">
+                        <img src={e.image} alt={e.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 /* ─── PAGE: Contact ─────────────────────────────────────── */
 function PageContact() {
   return (
@@ -825,6 +1167,9 @@ export default function App() {
       case "ministeres": return <PageMinisteres setPage={setPage} />;
       case "horaires":   return <PageHoraires />;
       case "sermons":    return <PageSermons />;
+      case "direct":     return <PageDirect setPage={setPage} />;
+      case "galerie":    return <PageGalerie />;
+      case "evenements": return <PageEvenements setPage={setPage} />;
       case "contact":    return <PageContact />;
       case "rejoindre":  return <PageRejoindre setPage={setPage} />;
     }
