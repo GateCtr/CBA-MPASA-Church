@@ -122,7 +122,7 @@ export function AdminShell({ user, onLogout, onExit }: AdminShellProps) {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-3">
+      <nav className="flex-1 overflow-y-auto py-3 scroll-dark">
         {/* Dashboard */}
         <NavItem t={TABS[0]} active={tab === "dashboard"} onClick={() => navigate("dashboard")} />
 
@@ -238,7 +238,7 @@ export function AdminShell({ user, onLogout, onExit }: AdminShellProps) {
         </header>
 
         {/* Content */}
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto scroll-light">
           {tab === "dashboard" && (
             <Dashboard
               events={events}

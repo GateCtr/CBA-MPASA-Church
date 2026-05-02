@@ -299,6 +299,40 @@
  * Even without handling focused or not, this is six possible combinations that
  * need to be distinguished from eachother visually.
  */
+/* Scrollbar — dark background (sidebar) */
+.scroll-dark {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.scroll-dark:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.scroll-dark::-webkit-scrollbar { width: 4px; }
+.scroll-dark::-webkit-scrollbar-track { background: transparent; }
+.scroll-dark::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+  transition: background 0.3s;
+}
+.scroll-dark:hover::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); }
+
+/* Scrollbar — light background (main content) */
+.scroll-light {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.scroll-light:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+.scroll-light::-webkit-scrollbar { width: 4px; }
+.scroll-light::-webkit-scrollbar-track { background: transparent; }
+.scroll-light::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+  transition: background 0.3s;
+}
+.scroll-light:hover::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+
 @layer utilities {
 
   /* Hide ugly search cancel button in Chrome until we can style it properly */
