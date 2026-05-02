@@ -164,8 +164,8 @@ export function DonationsAdmin({
         placeholder="Rechercher un donateur…"
       />
 
-      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden overflow-x-auto">
+        <table className="w-full text-sm min-w-[480px]">
           <thead className="bg-stone-50 text-xs text-stone-500 uppercase tracking-wide border-b border-stone-200">
             <tr>
               <th className="text-left px-5 py-3 font-semibold">Date</th>
@@ -250,8 +250,8 @@ export function DonationsAdmin({
                 />
               </Field>
             )}
-            <div className="grid grid-cols-3 gap-3">
-              <div className="col-span-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="col-span-1 sm:col-span-2">
                 <Field label="Montant *">
                   <input
                     type="number"
@@ -273,7 +273,7 @@ export function DonationsAdmin({
                 </select>
               </Field>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Catégorie">
                 <select
                   className={inputCls}

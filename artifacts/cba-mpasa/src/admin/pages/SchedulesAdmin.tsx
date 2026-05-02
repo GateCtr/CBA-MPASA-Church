@@ -157,7 +157,7 @@ export function SchedulesAdmin({
                 {DAY_NAMES.map((d, i) => <option key={i} value={i}>{d}</option>)}
               </select>
             </Field>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Heure de début">
                 <input type="time" className={inputCls} value={editing.startTime} onChange={(e) => setEditing({ ...editing, startTime: e.target.value })} />
               </Field>

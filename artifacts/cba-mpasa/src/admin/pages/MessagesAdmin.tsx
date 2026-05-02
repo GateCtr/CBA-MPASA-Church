@@ -84,8 +84,8 @@ export function MessagesAdmin({
         placeholder="Rechercher un message…"
       />
 
-      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden overflow-x-auto">
+        <table className="w-full text-sm min-w-[480px]">
           <thead className="bg-stone-50 text-xs text-stone-500 uppercase tracking-wide border-b border-stone-200">
             <tr>
               <th className="text-left px-5 py-3 font-semibold w-6"></th>
@@ -168,7 +168,7 @@ export function MessagesAdmin({
       >
         {selected && (
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div>
                 <div className="text-xs text-stone-400 uppercase font-semibold mb-0.5">De</div>
                 <div className="font-semibold text-stone-900">{selected.name}</div>

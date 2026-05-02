@@ -111,8 +111,8 @@ export function MembersAdmin({
         placeholder="Rechercher un membre…"
       />
 
-      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden overflow-x-auto">
+        <table className="w-full text-sm min-w-[480px]">
           <thead className="bg-stone-50 text-xs text-stone-500 uppercase tracking-wide border-b border-stone-200">
             <tr>
               <th className="text-left px-5 py-3 font-semibold">Nom</th>
@@ -195,7 +195,7 @@ export function MembersAdmin({
       >
         {editing && (
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Prénom *">
                 <input
                   className={inputCls}
@@ -215,7 +215,7 @@ export function MembersAdmin({
                 />
               </Field>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Téléphone">
                 <input
                   className={inputCls}
@@ -237,7 +237,7 @@ export function MembersAdmin({
                 />
               </Field>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Quartier">
                 <input
                   className={inputCls}

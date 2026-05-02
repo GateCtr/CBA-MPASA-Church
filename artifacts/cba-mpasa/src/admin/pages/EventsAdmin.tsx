@@ -102,8 +102,8 @@ export function EventsAdmin({
         placeholder="Rechercher un événement…"
       />
 
-      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white border border-stone-200 rounded-2xl overflow-hidden overflow-x-auto">
+        <table className="w-full text-sm min-w-[480px]">
           <thead className="bg-stone-50 text-xs text-stone-500 uppercase tracking-wide border-b border-stone-200">
             <tr>
               <th className="text-left px-5 py-3 font-semibold">Date</th>
@@ -180,7 +180,7 @@ export function EventsAdmin({
                 placeholder="Ex : Conférence MGRN"
               />
             </Field>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Date *">
                 <input
                   type="date"

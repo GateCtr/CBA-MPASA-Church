@@ -45,7 +45,7 @@ export function SettingsAdmin({
   return (
     <div className="max-w-3xl space-y-6">
       <Section title="Informations générales" subtitle="Informations visibles sur la page À propos et les métadonnées SEO.">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Pasteur principal">
             <input className={inputCls} value={draft.pastor} onChange={(e) => setDraft({ ...draft, pastor: e.target.value })} />
           </Field>
@@ -59,7 +59,7 @@ export function SettingsAdmin({
       </Section>
 
       <Section title="Coordonnées" subtitle="Ces informations apparaissent sur la page Contact.">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Téléphone">
             <input className={inputCls} value={draft.phone} onChange={(e) => setDraft({ ...draft, phone: e.target.value })} placeholder="+243 8X XXX XXXX" />
           </Field>

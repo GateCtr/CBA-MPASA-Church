@@ -145,7 +145,7 @@ export function AnnouncementsAdmin({
       <Modal open={modal} onClose={closeModal} title={editing?.id ? "Modifier l'annonce" : "Nouvelle annonce"} size="lg">
         {editing && (
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Field label="Type">
                 <select className={inputCls} value={editing.type} onChange={(e) => setEditing({ ...editing, type: e.target.value as Announcement["type"] })}>
                   {TYPES.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
