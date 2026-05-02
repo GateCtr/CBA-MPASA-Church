@@ -12,22 +12,28 @@
   "categories": ["lifestyle", "religion", "education"],
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/images/cba-hero.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
-    { "name": "Culte en Direct", "short_name": "Direct", "url": "/?p=direct", "description": "Suivre le culte en direct" },
-    { "name": "Sermons", "short_name": "Sermons", "url": "/?p=sermons", "description": "Écouter les derniers messages" },
-    { "name": "Demandes de prière", "short_name": "Prière", "url": "/?p=priere", "description": "Soumettre une intention de prière" },
-    { "name": "Faire un don", "short_name": "Don", "url": "/?p=don", "description": "Soutenir l'œuvre de Dieu" }
+    { "name": "Culte en Direct", "short_name": "Direct", "url": "/?p=direct", "description": "Suivre le culte en direct", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Sermons", "short_name": "Sermons", "url": "/?p=sermons", "description": "Écouter les derniers messages", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Demandes de prière", "short_name": "Prière", "url": "/?p=priere", "description": "Soumettre une intention de prière", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Faire un don", "short_name": "Don", "url": "/?p=don", "description": "Soutenir l'œuvre de Dieu", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
   ]
 }

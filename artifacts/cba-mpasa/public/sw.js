@@ -1,8 +1,11 @@
-const CACHE = "cba-mpasa-v1";
+const CACHE = "cba-mpasa-v2";
 const PRECACHE = [
   "/",
   "/favicon.svg",
   "/manifest.webmanifest",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/apple-touch-icon.png",
   "/images/cba-hero.png",
   "/images/cba-bible.png",
   "/images/cba-worship.png",
