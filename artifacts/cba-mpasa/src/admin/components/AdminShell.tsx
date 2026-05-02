@@ -174,7 +174,7 @@ export function AdminShell({ user, onLogout, onExit }: AdminShellProps) {
   );
 
   return (
-    <div className="min-h-screen bg-stone-100 font-['Inter'] flex">
+    <div className="h-screen overflow-hidden bg-stone-100 font-['Inter'] flex">
       {/* Desktop sidebar */}
       <div className="hidden lg:flex shrink-0">
         <Sidebar />
