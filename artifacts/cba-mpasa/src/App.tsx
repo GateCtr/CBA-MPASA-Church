@@ -23,6 +23,15 @@ const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Contact", page: "contact" },
 ];
 
+const HEADER_NAV_LINKS: { label: string; page: Page }[] = [
+  { label: "Accueil", page: "accueil" },
+  { label: "À Propos", page: "apropos" },
+  { label: "Direct", page: "direct" },
+  { label: "Événements", page: "evenements" },
+  { label: "Sermons", page: "sermons" },
+  { label: "Contact", page: "contact" },
+];
+
 /* ─── Shared Layout ─────────────────────────────────────── */
 function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) => void; children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -84,7 +93,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
           </button>
 
           <ul className="hidden lg:flex items-center gap-6">
-            {NAV_LINKS.map((l) => (
+            {HEADER_NAV_LINKS.map((l) => (
               <li key={l.page}>
                 <button
                   onClick={() => setPage(l.page)}
