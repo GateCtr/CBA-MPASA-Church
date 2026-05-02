@@ -1951,7 +1951,7 @@ function PagePriere() {
 /* ─── Root ─────────────────────────────────────── */
 const VALID_PAGES: Page[] = [
   "accueil", "apropos", "ministeres", "horaires", "sermons", "direct",
-  "galerie", "evenements", "contact", "rejoindre", "don", "priere",
+  "galerie", "evenements", "contact", "rejoindre", "don", "priere", "admin",
 ];
 
 export default function App() {
