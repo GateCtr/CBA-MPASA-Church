@@ -77,7 +77,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             : "bg-white shadow-md border-b border-amber-100"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center">
           <button onClick={() => setPage("accueil")} className="flex items-center gap-3 hover:opacity-80 transition">
             <div className="w-9 h-9 bg-amber-700 rounded-full flex items-center justify-center">
               <span className="text-white font-['Playfair_Display'] font-bold text-xs">CBA</span>
@@ -92,7 +92,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             </div>
           </button>
 
-          <ul className="hidden lg:flex items-center gap-6">
+          <ul className="hidden lg:flex items-center gap-6 flex-1 justify-center">
             {HEADER_NAV_LINKS.map((l) => (
               <li key={l.page}>
                 <button
@@ -138,7 +138,7 @@ function Layout({ page, setPage, children }: { page: Page; setPage: (p: Page) =>
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className={`lg:hidden transition-colors duration-300 ${transparent ? "text-white" : "text-gray-700"}`}
+            className={`lg:hidden ml-auto transition-colors duration-300 ${transparent ? "text-white" : "text-gray-700"}`}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
